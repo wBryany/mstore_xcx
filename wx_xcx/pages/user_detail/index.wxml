@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="common_container">
+
+  <view class="header">
+
+    <image class="mine_header" src="{{src}}"></image>
+  </view>
+
+
+  <view class="items">
+    <view class="child_item">
+
+
+      <view>
+
+       <image ></image> 修改处方
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view>
+        修改处方
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view>
+        修改处方
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view>
+        修改处方
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view>
+        修改处方
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view>
+    
+      </view>
+    </view>
+  </view>
+
+</view>

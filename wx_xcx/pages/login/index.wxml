@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+
+  <image class="login_logo" src="{{src}}"></image>
+
+
+  <form class="form_style" bindsubmit="login">
+    <view class="login_view_input ">
+    <view class="title_account"> 
+       账号
+    </view>
+     
+      <input class="class_account"  name='account' value="{{mInputaccount}}" class="login_input_style" placeholder="使用视光师/门店账号登录"></input>
+    </view>
+
+    <view class="view_line"></view>
+    <view class="login_view_input ">
+        <view class="title_account"> 
+       密码
+    </view>
+     
+        
+      <input class="class_pwd" name="password" type="password" value="{{mInputpwd}}" class="login_input_style"></input>
+    </view>
+    <view class="view_line"></view>
+    <button form-type="submit" class="btn_login"> 登录 </button>
+  </form>
+
+
+
+
+</view>

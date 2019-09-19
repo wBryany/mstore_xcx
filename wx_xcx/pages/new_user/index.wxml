@@ -1,0 +1,66 @@
+<!--index.wxml-->
+<view class="common_container">
+  <text class="text_style"> 为客户注册优眼账户,用户名不能特殊字符和中文,字母开头6到16位,可有下划线,默认密码为:111111。</text>
+
+
+  <view class="common_item_con first_item">
+    <view class="common_item">
+
+      <view>
+        姓名
+      </view>
+      <input class="input_style" bindinput="inputname" placeholder="请输入昵称"></input>
+
+    </view>
+  </view>
+  <view class="common_item_con sencond_item">
+    <view class="common_item">
+
+      <view>
+        生日
+      </view>
+      <picker mode="date" start="1900-01-01" end="2100-12-31" bindchange="bindTimeChange">
+        <view class="select_date_style">
+          {{select_date=='' ?"请选择日期" : select_date}}
+        </view>
+      </picker>
+
+    </view>
+  </view>
+
+
+  <view class="common_item_con third_item">
+    <view class="common_item">
+
+      <view>
+        手机号
+      </view>
+      <input class="input_style"  bindinput="inputphoneNum"  placeholder="请输入手机号"></input>
+
+    </view>
+  </view>
+
+
+  <view class="switch_type_container">
+    <view class="switch_type">
+      <button bindtap="chooseman" class="sex_btn_style {{select_sex_value=='1' ? 'sex_btn_style_selected' : '' }}">
+        <image class="common_img_style" src="{{select_sex_value=='1' ?icon_man_selected_src:icon_man_noselect_src }}"></image>
+        <view class="sex_btn_text  {{ select_sex_value=='1' ? 'sex_btn_text_selected' : 'sex_btn_text_unselected' }}">男</view>
+      </button>
+
+
+      <button bindtap="choosewoman" class="sex_btn_style {{select_sex_value=='2' ? 'sex_btn_style_selected' : '' }}">
+        <image class="common_img_style" src="{{select_sex_value=='2' ?icon_woman_selected_src:icon_woman_noselect_src }}"></image>
+        <view class="sex_btn_text  {{ select_sex_value=='2' ? 'sex_btn_text_selected' : 'sex_btn_text_unselected' }}">女</view>
+      </button>
+    </view>
+  </view>
+
+
+
+  <view class="view_confirm">
+    <button class="btn_confirm" bindtap="comfirm"> 确认 </button>
+  </view>
+
+
+</view>

@@ -1,0 +1,63 @@
+.login_logo {
+  width: 200rpx;
+  height: 200rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form_style {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 200rpx;
+   justify-content:center;
+}
+
+.login_view_input {
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+  flex-direction: row;
+  align-items: center;
+  
+}
+
+.class_account {
+  width: 0;
+  flex: 1;
+}
+
+.class_pwd {
+  /* margin-top: 10px; */
+  width: 100%;
+  display: flex
+}
+
+.login_input_text {
+  display: flex;
+  align-items: center;
+}
+
+.login_input_style {
+  margin-left: 40rpx;
+  width: 100%;
+}
+.title_account{
+  width: 120rpx
+}
+.view_line {
+  
+  width: 100%;
+  display: flex;
+  height: 2rpx;
+  background: #e4e4e4;
+}
+
+.btn_login {
+  background: #297ff2;
+  width: 100%;
+  margin-top: 80rpx;
+  color: white;
+}

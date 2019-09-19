@@ -1,0 +1,109 @@
+<!--index.wxml-->
+<view class="mine_container">
+
+  <view class="bg_top">
+
+    <image class="mine_header" src="{{src}}"></image>
+    <view class="username">{{name}}</view>
+
+    <view class="view_remain_times">
+
+      <view class="text_remain_times">剩余</view>
+
+      <view class="num_remain_times">
+
+
+
+        <view class="{{item.border_style}}" wx:for="{{mydata}}" wx:for-item="item" wx:for-index="index">
+          {{item.num}}
+
+        </view>
+      </view>
+      <view class="text_remain_times">次</view>
+    </view>
+
+
+    <view class="view_line"></view>
+
+    <view class="assignment_num">
+
+      <view class="assignment_num_month">
+
+
+        <view class="text_month">本月</view>
+
+        <view class="month_num">
+
+          <view class="text_color_gray">
+
+            已分配
+          </view>
+
+          <view class="nums_color">{{m_train}}</view>
+
+        </view>
+
+
+      </view>
+      <view class="assignment_num_day">
+
+
+        <view class="text_month">本日</view>
+
+        <view class="month_num">
+
+          <view class="text_color_gray">
+
+            已分配
+          </view>
+
+          <view class="nums_color">{{d_train}}</view>
+
+        </view>
+
+
+      </view>
+    </view>
+
+  </view>
+
+  <view class="items">
+
+    <view class="child_item">
+
+      <view class="image_item">
+
+        <image class="img_pic" src="{{img_fpjl}}"></image>
+
+        <view class="text_color_gray img_text">分配记录</view>
+      </view>
+    </view>
+    <view class="child_item">
+      <view class="image_item">
+
+        <image class="img_pic" src="{{img_sgs}}"></image>
+
+        <view class="text_color_gray img_text">视光师</view>
+      </view>
+    </view>
+    <view class="child_item">
+      <view class="image_item">
+
+        <image class="img_pic" src="{{img_device}}"></image>
+
+        <view class="text_color_gray img_text">设备</view>
+      </view>
+    </view>
+
+    <view class="view_line2"></view>
+     <view class="child_item">
+
+      <view class="image_item">
+
+        <image class="img_pic" src="{{img_fpjl}}"></image>
+
+        <view class="text_color_gray img_text">修改记录</view>
+      </view>
+    </view>
+  </view>
+</view>

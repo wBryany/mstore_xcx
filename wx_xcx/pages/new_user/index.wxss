@@ -1,0 +1,130 @@
+page {
+  background-color: #f1f0f1;
+}
+
+.common_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 40px; */
+  box-sizing: border-box;
+  background: #f1f0f1;
+}
+
+.text_style {
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: gray;
+}
+
+.common_item_con {
+  width: 100%;
+  height: 80rpx;
+  background: #f1f0f1;
+}
+
+.common_item {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: white;
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+  padding-left: 20rpx;
+  border-radius: 12rpx;
+}
+
+.first_item {
+  margin-top: 100rpx;
+}
+
+.sencond_item {
+  margin-top: 50rpx;
+}
+
+.third_item {
+  margin-top: 50rpx;
+  margin-bottom: 100rpx;
+}
+
+.input_style {
+  margin-left: 30rpx;
+  display: flex;
+  flex: 1;
+  margin-right: 30rpx;
+}
+
+.select_date_style {
+  margin-left: 30rpx;
+  display: flex;
+  flex: 1;
+  color: gray;
+  margin-right: 30rpx;
+}
+
+.switch_type_container {
+  width: 100%;
+  height: 80rpx;
+}
+
+.switch_type {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+}
+
+.common_img_style {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.sex_btn_style {
+  width: 40%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* border-radius:14rpx;  */
+}
+
+.sex_btn_style_selected {
+  background: #297ff2;
+}
+
+.sex_btn_text {
+  font-size: 32rpx;
+  margin-left: 16rpx;
+}
+
+.sex_btn_text_selected {
+  color: white;
+}
+
+.sex_btn_text_unselected {
+  color: gray;
+}
+
+.view_confirm {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 72rpx;
+}
+
+.btn_confirm {
+  /* width: 100%; */
+  background: #297ff2;
+  color: white;
+  margin-left: 48rpx;
+  margin-right: 48rpx;
+}
