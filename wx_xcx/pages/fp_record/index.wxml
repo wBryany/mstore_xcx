@@ -1,0 +1,34 @@
+<!--pages/fp_record/index.wxml-->
+<!--index.wxml-->
+<view class="common_container">
+
+
+  <scroll-view class="sc_view" scroll-y="true">
+    <!-- scroll-view里面的内容 -->
+    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+    <view class="left_contaier">
+    
+     <image class="header" src="{{src}}"></image>
+      <view class="item_info">
+        <view>{{item.nick_name}}</view>
+        <view>购买：{{item.username}}</view>
+        <view>{{item.create_time}}</view>
+      </view>
+
+    </view>
+     
+
+      <view class="style_op_name">
+
+        <view>时光师</view>
+
+      </view>
+
+    </view>
+
+
+  </scroll-view>
+
+
+
+</view>

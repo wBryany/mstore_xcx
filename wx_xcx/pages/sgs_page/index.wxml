@@ -1,0 +1,31 @@
+<!--pages/sgs_page/index.wxml-->
+
+<view class="common_container">
+  <view class="new_sgs" bindtap="tocreate_new">
+    +视光师
+  </view>
+  <view class="divide_line line_margin"></view>
+
+
+
+  <scroll-view class="sc_view" scroll-y="true">
+    <!-- scroll-view里面的内容 -->
+    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+      <image class="header" src="{{src}}"></image>
+      <view class="item_info">
+        <view>{{item.username}}</view>
+        <view>{{item.phone_num}}</view>
+
+      </view>
+
+
+      <image class="delete_icon" src="{{delete_icon_src}}"></image>
+
+    </view>
+
+
+  </scroll-view>
+
+
+
+</view>

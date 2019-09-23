@@ -1,0 +1,105 @@
+/* pages/modify_record/index.wxss */
+
+.common_container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: white;
+}
+
+.view_common_text {
+  width: 100%;
+  height: 60rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: #f1f0f1;
+}
+
+.left_text {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 32rpx;
+  font-size: 28rpx;
+}
+
+.right_text {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32rpx;
+  font-size: 28rpx;
+}
+
+.view-item-contaier {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-item {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.left_index {
+  color: white;
+  font-size: 28rpx;
+  background: #4185de;
+  width: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40rpx;
+  border-radius: 8rpx;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
+  margin-top: 20rpx;
+}
+
+.center_text {
+  display: flex;
+  flex-direction: column;
+}
+
+.train_name {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.op_class {
+  margin-top: 20rpx;
+  position: absolute;
+  right: 0;
+  margin-right: 32rpx;
+}
+
+.divide_line {
+  width: 100%;
+  height: 1rpx;
+  background: #e4e4e4;
+}
+
+.divide_line_posion {
+  bottom: 0;
+}
+
+.nick_name_class {
+  color: #333;
+}
+
+.des_class {
+  color: #999;
+}
+
+.time_class {
+  font-size: 28rpx;
+}

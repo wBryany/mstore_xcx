@@ -71,7 +71,7 @@
 
     <view class="child_item">
 
-      <view class="image_item">
+      <view class="image_item"  bindtap="to_fp_record">
 
         <image class="img_pic" src="{{img_fpjl}}"></image>
 
@@ -79,7 +79,7 @@
       </view>
     </view>
     <view class="child_item">
-      <view class="image_item">
+      <view class="image_item" bindtap="to_sgs_page">
 
         <image class="img_pic" src="{{img_sgs}}"></image>
 
@@ -87,7 +87,7 @@
       </view>
     </view>
     <view class="child_item">
-      <view class="image_item">
+      <view class="image_item" bindtap="to_device_page">
 
         <image class="img_pic" src="{{img_device}}"></image>
 
@@ -95,8 +95,8 @@
       </view>
     </view>
 
-    <view class="view_line2"></view>
-     <view class="child_item">
+    <view class="view_line2" ></view>
+     <view class="child_item" bindtap="to_modify_record_page">
 
       <view class="image_item">
 

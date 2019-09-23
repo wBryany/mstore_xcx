@@ -1,0 +1,118 @@
+/* pages/device/index.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.common_container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: white;
+}
+
+.top_nav_style {
+  background: white;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+}
+
+.child_item {
+  box-sizing: border-box;
+  /* background-color: red; */
+  flex: 0 0 33.33333%;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_name_dir {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav_name {
+  color: #4a90e2;
+}
+
+.line {
+  background: #4a90e2;
+  width: 40rpx;
+  height: 4rpx;
+  margin-top: 6rpx;
+  display: flex;
+}
+
+.divide_line {
+  width: 100%;
+  height: 1rpx;
+  background: #e4e4e4;
+}
+
+.sc_view {
+  /* margin-top: 40rpx; */
+  width: 100%;
+  min-height: 20rpx;
+}
+
+.user_list_item {
+  display: flex;
+  width: 100%;
+  height: 120rpx;
+  align-items: center;
+  flex-direction: row;
+  border-bottom: 2rpx solid #e4e4e4;
+}
+
+.header {
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 60rpx;
+  margin-left: 40rpx;
+}
+
+.item_info {
+  margin-left: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.view_line {
+  width: 100%;
+  height: 2rpx;
+  background: #e4e4e4;
+}
+
+.left_contaier {
+  width: 80%;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.style_op_name {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tag_bg {
+  font-size: 24rpx;
+  color: #ffffff;
+  padding:10rpx;
+  background: #4a90e2;
+  border-radius: 30rpx;
+  margin-left: 16rpx;
+}

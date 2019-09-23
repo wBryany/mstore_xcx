@@ -93,6 +93,30 @@ Page({
       }
     });
   },
+  //分配记录
+  to_fp_record(){
+    wx.navigateTo({
+      url: '../fp_record/index'
+    });
+  },
+  //视光师
+  to_sgs_page() {
+    wx.navigateTo({
+      url: '../sgs_page/index'
+    });
+  },
+  //设备
+  to_device_page() {
+    wx.navigateTo({
+      url: '../device/index'
+    });
+  },
+  //修改记录
+  to_modify_record_page() {
+    wx.navigateTo({
+      url: '../modify_record/index'
+    });
+  },
   dealRemaintimes(data) {
     let tem_data = [];
     if (data > 0) {
