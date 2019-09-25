@@ -1,0 +1,57 @@
+<wxs module="get_device_type_name_fiter" src="../../utils/myutils.wxs"></wxs>
+<view class="common_container">
+
+  <view class="top_nav_style">
+
+    <view class="child_item">
+
+      <view class="nav_name_dir" bindtap="swich_top_tab1">
+        <view class="nav_name">全部</view>
+        <view class="line" wx:if="{{show_underline == '1' }}"></view>
+      </view>
+
+
+    </view>
+    <view class="child_item" bindtap="swich_top_tab2">
+
+      <view class="nav_name_dir">
+        <view class="nav_name">训练仪</view>
+        <view class="line" wx:if="{{show_underline == '2' }}"></view>
+      </view>
+    </view>
+    <view class="child_item">
+
+      <view class="nav_name_dir" bindtap="swich_top_tab3">
+        <view class="nav_name">检查仪</view>
+        <view class="line" wx:if="{{show_underline == '3' }}"> </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="divide_line"></view>
+  <scroll-view class="sc_view" scroll-y="true">
+    <!-- scroll-view里面的内容 -->
+    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+      <view class="left_contaier">
+        <view class="item_info">
+          <view >{{item.device_name}}</view>
+          <view class="tag_bg">{{get_device_type_name_fiter.getDevicename(item.device_type)}}</view>
+      <!-- <view class="tag_bg">{{get_device_type_name_fiter.getDevicename(item.device_type)}}</view> -->
+        </view>
+
+      </view>
+
+
+      <view class="style_op_name">
+
+        <view>{{item.status}}</view>
+
+      </view>
+
+    </view>
+
+
+  </scroll-view>
+
+
+</view>

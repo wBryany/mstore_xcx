@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/user_detail/index",
     "pages/login/index",
     "pages/mine/index",
     "pages/user/index",
     "pages/new_user/index",
+
     "pages/assign_train_time/index",
     "pages/prescription_record/index",
     "pages/alter_record/index",
@@ -12,6 +12,14 @@
     "pages/prescription_detail/index",
     "pages/add_train_plan/index",
     "pages/prescription_setting/index"
+
+    "pages/user_detail/index",
+    "pages/fp_record/index",
+    "pages/device/index",
+    "pages/new_sgs/index",
+    "pages/sgs_page/index",
+    "pages/modify_record/index"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

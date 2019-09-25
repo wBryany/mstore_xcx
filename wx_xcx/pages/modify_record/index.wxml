@@ -1,0 +1,73 @@
+<!--pages/modify_record/index.wxml-->
+<view class="common_container">
+  <scroll-view class="sc_view" scroll-y="true">
+    <!-- scroll-view里面的内容 -->
+    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}">
+
+      <view class="view_common_text" bindtap="clicktipitem" data-index="{{index}}">
+
+        <view class="left_text des_class">
+          2019年1月
+
+        </view>
+        <view class="right_text des_class">
+          视光师
+
+        </view>
+      </view>
+
+
+      <view class="view-item-contaier" wx-if="{{item.show_item}}" wx:for="{{item.records}}" wx:for-index="idx" wx:for-item="dataitem" data-index="{{idx}}">
+
+        <view class="view-item">
+          <view class="left_index">{{idx+1}}</view>
+
+          <view class="center_text">
+
+            <view class="train_name">
+              <view class="nick_name_class">
+                {{ dataitem.nick_name}}
+              </view>
+              <view class="des_class">
+
+                {{ dataitem.op_desc}}
+              </view>
+              <view class="nick_name_class">
+
+                {{ dataitem.item_name}}
+              </view>
+              <view class="nick_name_class">
+                {{ dataitem.memo}}
+              </view>
+              <view class="des_class">
+                训练项目
+              </view>
+
+            </view>
+
+
+            <view class="des_class time_class">{{dataitem.ctime}}</view>
+          </view>
+
+
+          <view class="op_class">
+            {{dataitem.op_nick_name}}
+          </view>
+        </view>
+
+
+
+        <view class="divide_line divide_line_posion"></view>
+
+      </view>
+
+
+
+    </view>
+
+
+  </scroll-view>
+
+
+
+</view>

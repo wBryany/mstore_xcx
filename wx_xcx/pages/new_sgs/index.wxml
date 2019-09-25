@@ -1,0 +1,60 @@
+<!--pages/new_sgs/index.wxml-->
+
+
+<view class="common_container">
+
+
+  <view class="search_widget">
+
+    <input bindinput="inputsearch" placeholder="输入手机号/登录名" placeholder-class="place_class" class="search_input"></input>
+
+    <button class="btn_search" bindtap="tosearch">搜索</button>
+  </view>
+
+  <view class="divide_line"></view>
+
+  <view class="view_common_text">
+
+    <view class="left_text">
+      登录名
+
+    </view>
+    <view class="right_text">
+      {{mydata.username}}
+
+    </view>
+  </view>
+  <view class="divide_line"></view>
+
+  <view class="view_common_text">
+
+    <view class="left_text">
+      昵称
+
+    </view>
+    <view class="right_text">
+      {{mydata.nick_name}}
+
+    </view>
+  </view>
+  <view class="divide_line"></view>
+
+
+
+
+  <view class="view_common_text">
+
+    <view class="left_text">
+      手机
+
+    </view>
+    <view class="right_text">
+     {{mydata.mobile}}
+
+    </view>
+  </view>
+  <view class="divide_line"></view>
+
+
+  <button class="btn_login" bindtap="btn_confirm" > 确认 </button>
+</view>

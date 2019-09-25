@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "视光师",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {}
+}
