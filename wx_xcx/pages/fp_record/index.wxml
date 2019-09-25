@@ -1,5 +1,6 @@
 <!--pages/fp_record/index.wxml-->
 <!--index.wxml-->
+<wxs module="get_rolename_fiter" src="../../utils/myutils.wxs"></wxs>
 <view class="common_container">
 
 
@@ -10,8 +11,8 @@
     
      <image class="header" src="{{src}}"></image>
       <view class="item_info">
-        <view>{{item.nick_name}}</view>
-        <view>购买：{{item.username}}</view>
+        <view>{{item.buyer}}</view>
+        <view>购买：{{item.training_times}}</view>
         <view>{{item.create_time}}</view>
       </view>
 
@@ -20,7 +21,7 @@
 
       <view class="style_op_name">
 
-        <view>时光师</view>
+        <view>{{item.op_name}}/{{get_rolename_fiter.getRolename(item.op_role)}}</view>
 
       </view>
 

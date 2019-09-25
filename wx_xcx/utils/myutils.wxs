@@ -1,0 +1,71 @@
+var get_rolename_fiter = {
+
+  getrolename:function(roleid) {
+
+
+    // console.log("getrolename");
+    var _txt = ''
+    switch (roleid) {
+      case 1:
+        _txt = '基础用户'
+        break
+      case 2:
+        _txt = '渠道'
+        break
+      case 3:
+        _txt = '门店'
+        break
+      case 4:
+        _txt = '医院'
+        break
+      case 5:
+        _txt = '视光师'
+        break;
+      case 6:
+        _txt = '管理员'
+        break;
+      case 7:
+        _txt = '消费者'
+        break;
+    }
+    return _txt
+  
+  },
+
+
+
+}
+
+var get_device_type_name_fiter = {
+
+  gettypename: function (type) {
+
+
+    // console.log("gettypename:" + type);
+    var _txt = ''
+    switch (type) {
+      case 0:
+        _txt = '检查仪'
+        break
+      case 1:
+        _txt = '训练仪'
+        break
+      case 2:
+        _txt = '打印电脑'
+        break
+    }
+    // console.log("gettypename----》:" + _txt);
+
+    return _txt
+
+  },
+
+
+
+}
+
+
+module.exports = {
+  getRolename: get_rolename_fiter.getrolename,
+  getDevicename: get_device_type_name_fiter.gettypename,
+}

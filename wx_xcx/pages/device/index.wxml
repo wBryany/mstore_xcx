@@ -1,3 +1,4 @@
+<wxs module="get_device_type_name_fiter" src="../../utils/myutils.wxs"></wxs>
 <view class="common_container">
 
   <view class="top_nav_style">
@@ -33,9 +34,9 @@
     <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
       <view class="left_contaier">
         <view class="item_info">
-          <view >{{item.nick_name}}</view>
-          <view class="tag_bg">检查仪</view>
-      
+          <view >{{item.device_name}}</view>
+          <view class="tag_bg">{{get_device_type_name_fiter.getDevicename(item.device_type)}}</view>
+      <!-- <view class="tag_bg">{{get_device_type_name_fiter.getDevicename(item.device_type)}}</view> -->
         </view>
 
       </view>
@@ -43,7 +44,7 @@
 
       <view class="style_op_name">
 
-        <view>时光师</view>
+        <view>{{item.status}}</view>
 
       </view>
 

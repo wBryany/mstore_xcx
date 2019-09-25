@@ -13,7 +13,7 @@ Page({
     img_fpjl: '/assets/img/fpjl.png',
     img_sgs: '/assets/img/sgs.png',
     img_device: '/assets/img/device.png',
-
+    img_modify: '/assets/img/modify_icon.png',
     name: "",
     m_train: '0',
     d_train: '0',

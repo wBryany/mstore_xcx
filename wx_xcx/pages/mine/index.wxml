@@ -23,7 +23,7 @@
     </view>
 
 
-    <view class="view_line"></view>
+    <view class="view_line_top"></view>
 
     <view class="assignment_num">
 
@@ -71,7 +71,7 @@
 
     <view class="child_item">
 
-      <view class="image_item"  bindtap="to_fp_record">
+      <view class="image_item" bindtap="to_fp_record">
 
         <image class="img_pic" src="{{img_fpjl}}"></image>
 
@@ -94,16 +94,16 @@
         <view class="text_color_gray img_text">设备</view>
       </view>
     </view>
-
-    <view class="view_line2" ></view>
-     <view class="child_item" bindtap="to_modify_record_page">
+ <view class="child_item" bindtap="to_modify_record_page">
 
       <view class="image_item">
 
-        <image class="img_pic" src="{{img_fpjl}}"></image>
+        <image class="img_pic" src="{{img_modify}}"></image>
 
         <view class="text_color_gray img_text">修改记录</view>
       </view>
     </view>
+    <view class="view_line2"></view>
+   
   </view>
 </view>

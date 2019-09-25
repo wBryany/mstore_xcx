@@ -91,7 +91,7 @@
 }
 
 .delete_icon {
-  width: 24rpx;
+  width: 40rpx;
   height: 48rpx;
   position: absolute;
   right: 0;

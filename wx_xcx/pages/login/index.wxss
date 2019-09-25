@@ -45,7 +45,8 @@
   width: 100%;
 }
 .title_account{
-  width: 120rpx
+  width: 120rpx;
+  color:#0d0d0d;
 }
 .view_line {
   
@@ -55,9 +56,34 @@
   background: #e4e4e4;
 }
 
-.btn_login {
-  background: #297ff2;
+.btn_login_enable {
+  font-size: 32rpx;
+  background: #2F8AF4;
   width: 100%;
   margin-top: 80rpx;
   color: white;
+  border-radius: 10rpx;
+}
+
+.btn_login_disable {
+  font-size: 32rpx;
+  width: 100%;
+  margin-top: 80rpx;
+  color: #888888;
+  background: #cccccc;
+  border-radius: 10rpx;
+}
+
+.login_tip_class{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 100rpx;
+  height:64rpx;
+  width: 318rpx;
+}
+
+.input_placeholder_style{
+
+  font-size: 32rpx;
+  color: #cccccc;
 }

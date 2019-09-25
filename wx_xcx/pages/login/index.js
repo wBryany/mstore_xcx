@@ -5,13 +5,36 @@ var MD5Util = require("../../assets/md5.js")
 
 Page({
   data: {
+    // mInputaccount: '',
+    // mInputpwd: '',
     mInputaccount: '10001010001',
     mInputpwd: '010001',
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    src: '/assets/img/logo.png'
+    src: '/assets/img/logo.png',
+    tip_src: '/assets/img/login_tip.png',
+    listen_input_account: '',
+    listen_input_pwd: '',
+    login_btn_enable: false
+  },
+
+  onReady: function() {
+
+this.data.listen_input_account=this.data.mInputaccount;
+    this.data.listen_input_pwd = this.data.mInputpwd;
+    if (this.data.mInputaccount !== '' && this.data.mInputpwd !== '') {
+      this.data.login_btn_enable = true;
+    } else {
+      this.data.login_btn_enable = false;
+    }
+
+    let _this = this;
+    _this.setData({
+      login_btn_enable: _this.data.login_btn_enable
+
+    });
   },
   //事件处理函数
   bindViewTap: function() {
@@ -46,6 +69,43 @@ Page({
         }
       })
     }
+  },
+  input_accout_listen(e) {
+    this.data.listen_input_account = e.detail.value;
+
+    // console.log("listen_input_account::::" + this.data.listen_input_account);
+    // console.log("listen_input_pwd::::" + this.data.listen_input_pwd);
+    if (this.data.listen_input_account !== '' && this.data.listen_input_pwd !== '') {
+
+      this.data.login_btn_enable = true;
+    } else {
+      this.data.login_btn_enable = false;
+    }
+
+    console.log("input_accout_listen::::" + this.data.login_btn_enable);
+    let _this = this;
+    _this.setData({
+      login_btn_enable: _this.data.login_btn_enable
+
+    });
+  },
+
+  input_pwd_listen(e) {
+    this.data.listen_input_pwd = e.detail.value;
+    console.log("listen_input_account::::" + this.data.listen_input_account);
+    console.log("listen_input_pwd::::" + this.data.listen_input_pwd);
+    if (this.data.listen_input_account !== '' && this.data.listen_input_pwd !== '') {
+
+      this.data.login_btn_enable = true;
+    } else {
+      this.data.login_btn_enable = false;
+    }
+    console.log("login_btn_enable::::" + this.data.login_btn_enable);
+    let _this = this;
+    _this.setData({
+      login_btn_enable: _this.data.login_btn_enable
+
+    });
   },
   getUserInfo: function(e) {
     console.log(e)

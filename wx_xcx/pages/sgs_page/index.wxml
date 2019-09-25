@@ -10,7 +10,7 @@
 
   <scroll-view class="sc_view" scroll-y="true">
     <!-- scroll-view里面的内容 -->
-    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem(index)">
       <image class="header" src="{{src}}"></image>
       <view class="item_info">
         <view>{{item.username}}</view>
@@ -19,7 +19,7 @@
       </view>
 
 
-      <image class="delete_icon" src="{{delete_icon_src}}"></image>
+      <image class="delete_icon" src="{{unbindsrc}}" bindtap="deleteItem" data-index="{{index}}"></image>
 
     </view>
 

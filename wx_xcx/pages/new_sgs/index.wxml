@@ -20,7 +20,7 @@
 
     </view>
     <view class="right_text">
-      张三
+      {{mydata.username}}
 
     </view>
   </view>
@@ -33,7 +33,7 @@
 
     </view>
     <view class="right_text">
-      小辣椒
+      {{mydata.nick_name}}
 
     </view>
   </view>
@@ -49,12 +49,12 @@
 
     </view>
     <view class="right_text">
-      18111111111
+     {{mydata.mobile}}
 
     </view>
   </view>
   <view class="divide_line"></view>
 
 
-  <button class="btn_login"> 登录 </button>
+  <button class="btn_login" bindtap="btn_confirm" > 确认 </button>
 </view>
