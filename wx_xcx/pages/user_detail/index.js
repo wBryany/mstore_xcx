@@ -26,7 +26,7 @@ Page({
   },
   goAddPrescriprion: function () {
     wx.navigateTo({
-      url: '/pages/prescription_setting/index',
+      url: '/pages/add_prescription/index',
     })
   },
   goAlterRecord: function (){

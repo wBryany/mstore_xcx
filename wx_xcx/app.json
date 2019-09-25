@@ -8,10 +8,10 @@
     "pages/assign_train_time/index",
     "pages/prescription_record/index",
     "pages/alter_record/index",
-    "pages/add_ prescription/index",
+    "pages/add_prescription/index",
     "pages/prescription_detail/index",
     "pages/add_train_plan/index",
-    "pages/prescription_setting/index"
+    "pages/prescription_setting/index",
 
     "pages/user_detail/index",
     "pages/fp_record/index",
