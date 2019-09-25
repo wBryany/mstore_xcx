@@ -9,41 +9,36 @@
 
   <view class="items">
     <view class="child_item">
-
-
       <view>
-
        <image ></image> 修改处方
       </view>
     </view>
-    <view class="child_item">
-
+    <view class="child_item" bindtap="goAddPrescriprion">
       <view>
         修改处方
+      </view>
+    </view>
+    <view class="child_item" bindtap="goTrainReport">
+
+      <view>
+        训练报告
       </view>
     </view>
     <view class="child_item">
 
       <view>
-        修改处方
+        检查报告
       </view>
     </view>
-    <view class="child_item">
+    <view class="child_item" bindtap="goAlterRecord">
 
       <view>
-        修改处方
+        处方记录
       </view>
     </view>
-    <view class="child_item">
-
+    <view class="child_item" bindtap="goAssignTrainTimes">
       <view>
-        修改处方
-      </view>
-    </view>
-    <view class="child_item">
-
-      <view>
-    
+        次卡管理
       </view>
     </view>
   </view>

@@ -1,0 +1,53 @@
+<!--pages/alter_record/index.wxml-->
+<view class="wrap">
+  <view class="section_wrap">
+    <view class="left_date">2019年7月</view>
+    <view class="right_sight">视光师</view>  
+  </view>
+  <view class="row_wrap">
+    <view class="num_wrap">
+      <view>1</view>
+    </view>
+    <view class="content_wrap">
+      <view>增加<text>调节双眼</text>训练项目</view>
+      <view> 
+        <text>今天</text> <text>17:50:32</text>
+      </view>
+    </view>
+    <view class="name_wrap">
+      <view>魏星</view>
+    </view>
+  </view>
+  
+  <view class="row_wrap">
+    <view class="num_wrap">
+      <view>2</view>
+    </view>
+    <view class="content_wrap">
+      <view>减少<text>静态融像BI</text>训练项目</view>
+      <view>修改<text>调节左眼</text>训练项目</view>
+      <view> 
+        <text>今天</text> <text>17:50:32</text>
+      </view>
+    </view>
+    <view class="name_wrap">
+      <view>张三</view>
+    </view>
+  </view>
+  
+  <view class="row_wrap">
+    <view class="num_wrap">
+      <view>3</view>
+    </view>
+    <view class="content_wrap">
+      <view>减少<text>静态融像BI</text>训练项目</view>
+      <view>修改<text>调节左眼</text>训练项目</view>
+      <view> 
+        <text>今天</text> <text>17:50:32</text>
+      </view>
+    </view>
+    <view class="name_wrap">
+      <view>张三</view>
+    </view>
+  </view>
+</view>

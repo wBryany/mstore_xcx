@@ -24,7 +24,26 @@ Page({
     // })
 
   },
-
+  goAddPrescriprion: function () {
+    wx.navigateTo({
+      url: '/pages/prescription_setting/index',
+    })
+  },
+  goAlterRecord: function (){
+    wx.navigateTo({
+      url: '/pages/alter_record/index',
+    })
+  },
+  goTrainReport: function () {
+    wx.navigateTo({
+      url: '/pages/prescription_record/index',
+    })
+  },
+  goAssignTrainTimes: function () {
+    wx.navigateTo({
+      url: '/pages/assign_train_time/index',
+    })
+  },
   tosearch(e) {
     let _this = this;
     console.log("tosearch");

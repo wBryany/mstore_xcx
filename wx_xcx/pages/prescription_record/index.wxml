@@ -1,0 +1,10 @@
+<!--pages/prescription_record/index.wxml-->
+
+<view>
+  <view style="margin-top:200rpx; width:100%; text-align: center;">折线图</view>
+  <view style="width:100%; text-align: center;">+</view>
+  <view style="width:100%; text-align: center;">原始门店训练报告</view>
+</view>
+<view class="btn_wrap">
+  <button>确认添加</button>
+</view>

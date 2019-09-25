@@ -1,0 +1,22 @@
+/* pages/prescription_record/index.wxss */
+
+
+
+
+
+
+
+.btn_wrap{
+  position: fixed;
+  bottom: 40rpx;
+  left: 36rpx;
+  right: 36rpx;
+}
+.btn_wrap button{
+  margin: 0 auto;
+  height: 88rpx;
+  background-color: #4990E2;
+  color: white;
+  font-size: 32rpx;
+  line-height: 88rpx;
+}
