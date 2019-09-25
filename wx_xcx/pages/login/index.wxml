@@ -2,8 +2,6 @@
 <view class="container">
 
   <image class="login_logo" src="{{src}}"></image>
-
-
   <form class="form_style" bindsubmit="login">
     <view class="login_view_input ">
     <view class="title_account"> 

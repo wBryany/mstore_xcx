@@ -1,0 +1,50 @@
+<!--pages/prescription_setting/index.wxml-->
+<view class="wrap">
+  <view class="frist_section">
+    <view class="train_title">请选择训练项目</view>
+    <view class="train_wrap">
+      <view class="train_item" wx:for="{{train_items}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.name}}" bindtap="trainItemAction" data-bindex="{{idx}}">
+        <view class="item_title {{item.checked?'item_title_blue':'item_title_black'}}">{{item.name}}</view>
+        <view class="item_check_layer" hidden="{{!item.checked}}"></view>
+        <image hidden="{{!item.checked}}" src="../../assets/img/train_item_check.png"></image>
+      </view>
+      <view class="train_item" style="background-color: white;">
+      </view>
+    </view>
+  </view>
+  
+
+  <!-- 左眼正片等级 -->
+  <view class="l_eye_positive_level">
+    <view>
+      <view>左眼正片等级</view>
+      <view>次数</view>
+      <view>-</view>
+      <view>3</view>
+      <view>+</view>
+    </view>
+    <view>
+      <view>1.50</view>
+      <view>2.50</view>
+    </view>
+  </view>
+
+  <!-- 左眼负片等级 -->
+  <view class="l_eye_negative_level">
+    <view>
+      <view>左眼负片等级</view>
+      <view>次数</view>
+      <view>-</view>
+      <view>3</view>
+      <view>+</view>
+    </view>
+    <view>
+      <view>-1.50</view>
+      <view>-2.50</view>
+      <view>-3.50</view>
+      <view>-4.50</view>
+      <view>-6.00</view>
+      <view>-8.00</view>
+    </view>
+  </view>
+</view>

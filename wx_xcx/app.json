@@ -4,7 +4,14 @@
     "pages/login/index",
     "pages/mine/index",
     "pages/user/index",
-    "pages/new_user/index"
+    "pages/new_user/index",
+    "pages/assign_train_time/index",
+    "pages/prescription_record/index",
+    "pages/alter_record/index",
+    "pages/add_ prescription/index",
+    "pages/prescription_detail/index",
+    "pages/add_train_plan/index",
+    "pages/prescription_setting/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

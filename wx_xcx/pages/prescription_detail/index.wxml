@@ -1,0 +1,44 @@
+<!--pages/prescription_detail/index.wxml-->
+<view class="wrap">
+  <view class="head_wrap">
+    <radio class="sel_radio" disabled="flase" checked></radio>
+    <view>请选择障碍类型</view>
+    <image></image>
+  </view>
+  <view class="stat_wrap">
+    <view class="stat_frist">共5项训练项目，预估时间：1小时</view>
+    <view class="stat_second">
+      <text>调节时长：10分钟</text>
+      <text>聚散时长：10分钟</text>
+      <text>其他时长：10分钟</text>
+    </view>
+  </view>
+  
+  <view class="section_wrap">
+    <view class="title_wrap">系统将根据下面排列的顺序进行训练</view>
+    <view class="down_wrap">向下</view>
+    <view class="up_wrap">向上</view>
+    <view class="del_wrap">删除</view>
+  </view>
+
+  <view class="row_wrap">
+    <view class="row_head">
+      <view class="train_name">红绿固定初级训练</view>
+      <view class="train_detial">BI/BO:BI</view>
+      <view class="train_times">次数(3)</view>
+    </view>
+    <view class="row_down">
+      <view>下</view>
+    </view>
+    <view class="row_up">
+      <view>上</view>
+    </view>
+    <view class="row_del">
+      <view>X</view>
+    </view>
+  </view>
+
+  <view class="btn_wrap" bindtap="goPrescSetting">
+    <view><text class="btn_add">+</text><text class="btn_content">添加方案</text></view>
+  </view>
+</view>
