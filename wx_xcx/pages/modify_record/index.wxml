@@ -7,7 +7,7 @@
       <view class="view_common_text" bindtap="clicktipitem" data-index="{{index}}">
 
         <view class="left_text des_class">
-          2019年1月
+          {{item.year_month}}
 
         </view>
         <view class="right_text des_class">
@@ -25,32 +25,32 @@
           <view class="center_text">
 
             <view class="train_name">
-              <view class="nick_name_class">
+              <view class="nick_name_class font_style ">
                 {{ dataitem.nick_name}}
               </view>
-              <view class="des_class">
+              <view class="des_class font_style">
 
                 {{ dataitem.op_desc}}
               </view>
-              <view class="nick_name_class">
+              <view class="nick_name_class font_style">
 
                 {{ dataitem.item_name}}
               </view>
-              <view class="nick_name_class">
+              <view class="nick_name_class font_style">
                 {{ dataitem.memo}}
               </view>
-              <view class="des_class">
+              <view class="des_class font_style">
                 训练项目
               </view>
 
             </view>
 
 
-            <view class="des_class time_class">{{dataitem.ctime}}</view>
+            <view class="des_class time_class ">{{dataitem.ctime}}</view>
           </view>
 
 
-          <view class="op_class">
+          <view class="op_class font_style">
             {{dataitem.op_nick_name}}
           </view>
         </view>

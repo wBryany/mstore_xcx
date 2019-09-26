@@ -6,22 +6,24 @@
 
   <scroll-view class="sc_view" scroll-y="true">
     <!-- scroll-view里面的内容 -->
-    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
-    <view class="left_contaier">
-    
-     <image class="header" src="{{src}}"></image>
-      <view class="item_info">
-        <view>{{item.buyer}}</view>
-        <view>购买：{{item.training_times}}</view>
-        <view>{{item.create_time}}</view>
+    <view class="user_list_item" wx:for="{{mydata}}" wx:key="key" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+      <view class="left_contaier">
+
+        <image class="header" src="{{src}}"></image>
+        <view class="item_info">
+          <view class="item_text name_style">{{item.buyer}}</view>
+          <view class="item_text buy_num">购买：
+            <view class="common_color">{{item.training_times}}</view>
+          </view>
+          <view class="item_text time_style">{{item.create_time}}</view>
+        </view>
+
       </view>
 
-    </view>
-     
 
       <view class="style_op_name">
 
-        <view>{{item.op_name}}/{{get_rolename_fiter.getRolename(item.op_role)}}</view>
+        <view class="item_text op_style" >{{item.op_name}}/<view class="role">{{get_rolename_fiter.getRolename(item.op_role)}}</view></view>
 
       </view>
 

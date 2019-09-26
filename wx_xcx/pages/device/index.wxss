@@ -43,11 +43,13 @@ page {
 .nav_name {
   color: #4a90e2;
 }
-
+.nav_name_black {
+  color: #333333;
+}
 .line {
   background: #4a90e2;
   width: 40rpx;
-  height: 4rpx;
+  height: 6rpx;
   margin-top: 6rpx;
   display: flex;
 }
@@ -115,4 +117,13 @@ page {
   background: #4a90e2;
   border-radius: 30rpx;
   margin-left: 16rpx;
+}
+
+.font_style{
+  font-size: 32rpx;
+}
+
+.statu_style{
+
+  color: #999999;
 }

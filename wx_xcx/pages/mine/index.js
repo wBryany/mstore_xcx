@@ -2,7 +2,6 @@
 //获取应用实例
 const app = getApp()
 var MD5Util = require("../../assets/md5.js")
-
 Page({
   data: {
 
@@ -31,6 +30,11 @@ Page({
 
 
     ],
+  },
+  onShow: function () {
+    this.getTabBar().setData({
+      selected: 0
+    })
   },
   //事件处理函数
   onLoad: function() {

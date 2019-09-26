@@ -14,7 +14,7 @@
 
 
 
-        <view class="{{item.border_style}}" wx:for="{{mydata}}" wx:for-item="item" wx:for-index="index">
+        <view class="{{item.border_style}}" wx:key="key" wx:for="{{mydata}}" wx:for-item="item" wx:for-index="index">
           {{item.num}}
 
         </view>

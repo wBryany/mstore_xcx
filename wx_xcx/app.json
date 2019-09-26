@@ -4,7 +4,6 @@
     "pages/mine/index",
     "pages/user/index",
     "pages/new_user/index",
-
     "pages/assign_train_time/index",
     "pages/prescription_record/index",
     "pages/alter_record/index",
@@ -12,14 +11,12 @@
     "pages/prescription_detail/index",
     "pages/add_train_plan/index",
     "pages/prescription_setting/index",
-
     "pages/user_detail/index",
     "pages/fp_record/index",
     "pages/device/index",
     "pages/new_sgs/index",
     "pages/sgs_page/index",
     "pages/modify_record/index"
-
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,13 +25,18 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "custom": true,
     "list": [
       {
         "pagePath": "pages/mine/index",
+        "iconPath": "/assets/img/mine_dis_select.png",
+        "selectedIconPath": "/assets/img/mine_selected.png",
         "text": "我的"
       },
       {
         "pagePath": "pages/user/index",
+        "iconPath": "/assets/img/user_dis_select.png",
+        "selectedIconPath": "/assets/img/user_selected.png",
         "text": "用户"
       }
     ]

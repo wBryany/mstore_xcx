@@ -120,12 +120,12 @@
 }
 
 .text_month {
-  color: #4185de;
+  color: #4a90e2;
   padding: 4rpx;
-  width:36rpx;
+  width:32rpx;
   font-size: 32rpx;
   background: #bad9ff;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   border: 2rpx solid #4185de;
 }
 
@@ -137,6 +137,7 @@
 }
 
 .text_color_gray {
+  font-size: 32rpx;
   color: #999999;
 }
 

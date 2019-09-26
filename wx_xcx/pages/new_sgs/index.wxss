@@ -22,23 +22,27 @@
 .search_input {
   width: 70%;
   height: 72rpx;
-  background: #e4e4e4;
+  background: #f9f9f9;
   margin-left: 20rpx;
   border-radius: 20rpx;
   display: flex;
   padding-left: 20rpx;
+  font-size: 32rpx;
+  color: #333333;
 }
 
 .btn_search {
   width: 20%;
-  height: 60rpx;
-  font-size: 24rpx;
+  /* height: 60rpx; */
+  font-size: 32rpx;
   color: white;
-  background: #4185de;
+  background: #2f8af4;
 }
 
 .place_class {
   padding-left: 40rpx;
+  font-size: 30rpx;
+  color:#999999
 }
 
 .new_user {
@@ -121,10 +125,15 @@
 .btn_login {
   position: absolute;
   bottom: 0;
-  /* left: 0; */
-  background: #297ff2;
+
+  font-size: 32rpx;
+  background: #2f8af4;
   width: 80%;
   margin-top: 80rpx;
   color: white;
   margin-bottom: 48rpx;
+}
+
+.font_style{
+  font-size: 32rpx;
 }

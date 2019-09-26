@@ -1,7 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
 Page({
   data: {
 
@@ -14,6 +13,11 @@ Page({
     mydata: []
   },
 
+  onShow: function() {
+    this.getTabBar().setData({
+      selected: 1
+    })
+  },
   onReady: function() {
 
     this.getList();
@@ -42,7 +46,7 @@ Page({
   tosearch(e) {
     let _this = this;
     console.log("tosearch");
-   
+
     let u_id = wx.getStorageSync("userid");
     wx.showLoading({
       title: '请稍后...',
@@ -86,7 +90,7 @@ Page({
   },
 
   getList() {
-    
+
     let _this = this;
     console.log("getList");
 
@@ -95,7 +99,7 @@ Page({
     // console.log("cookie:" + wx.getStorageSync("sessionid"));
     wx.showLoading({
       title: '数据加载中...',
-      mask:true
+      mask: true
     })
     wx.request({
       url: 'http://app.uyu.com:7100/store/v1/api/store_consumer_list',

@@ -24,7 +24,7 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 32rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 
 .right_text {
@@ -32,7 +32,7 @@
   display: flex;
   justify-content: flex-end;
   margin-right: 32rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 
 .view-item-contaier {
@@ -68,6 +68,7 @@
   display: flex;
   flex-direction: column;
 
+width:66%;
 }
 
 .train_name {
@@ -103,5 +104,10 @@
 }
 
 .time_class {
-  font-size: 28rpx;
+  font-size: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.font_style{
+  font-size: 32rpx;
 }

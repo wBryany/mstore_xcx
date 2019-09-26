@@ -103,3 +103,34 @@ page {
   align-items: center;
   justify-content: center;
 }
+
+.item_text{
+  font-size: 32rpx;
+}
+
+.common_color{
+  
+  color:#4a90e2;
+}
+ .buy_num{
+   display: flex;
+   flex-direction: row;
+ }
+
+ .name_style{
+   color:#333333;
+ }
+ .time_style{
+   color: #999999;
+ }
+
+ .op_style{
+   display: flex;
+   flex-direction: row;
+   color: #333333;
+       flex-wrap: wrap;
+ }
+ .role{
+     font-size: 32rpx;
+     color:#4a90e2;
+ }

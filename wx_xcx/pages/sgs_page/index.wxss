@@ -97,3 +97,10 @@
   right: 0;
   margin-right: 50rpx;
 }
+.font_style{
+  font-size: 32rpx;
+  color: #333333;
+}
+.mobile_style{
+  margin-top: 12rpx;
+}

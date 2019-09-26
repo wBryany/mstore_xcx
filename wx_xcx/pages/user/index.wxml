@@ -9,7 +9,7 @@
     <button class="btn_search" bindtap="tosearch">搜索</button>
   </view>
 
-  <view class="new_user" bindtap="tocreate_new">
+  <view class="new_user font_style" bindtap="tocreate_new">
     +新建用户
   </view>
 
@@ -18,12 +18,12 @@
 
   <scroll-view class="sc_view" scroll-y="true">
     <!-- scroll-view里面的内容 -->
-    <view class="user_list_item" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
+    <view class="user_list_item" wx:key="key" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}" catchtap="clickitem">
       <image class="header" src="{{src}}"></image>
       <view class="item_info">
-        <view>昵称：{{item.nick_name}}</view>
-        <view>登录名：{{item.username}}</view>
-        <view>{{item.create_time}}</view>
+        <view class="font_style nickname_style">昵称：{{item.nick_name}}</view>
+        <view class="login_name_style font_style common_margintop">登录名：<view class="common_color">{{item.username}}</view></view>
+        <view class="font_style time_style common_margintop">{{item.create_time}}</view>
       </view>
 
 
