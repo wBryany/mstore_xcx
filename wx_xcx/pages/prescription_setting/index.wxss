@@ -11,15 +11,13 @@
   margin: 0 auto;
   width: 100%;
   font-size: 32rpx;
-  padding: 0 36rpx;
+  padding: 0 30rpx;
 }
 .train_wrap{
-  margin-top: 20rpx;
+  margin: 20rpx 30rpx;
   display: flex;
-  width: 100%;
-  padding: 0 18rpx 60rpx 18rpx;
   flex-wrap: wrap;
-  justify-content:space-around;
+  justify-content:space-between;
   border-bottom: 2rpx solid #f5f5f5;
 }
 .train_item{
@@ -59,4 +57,193 @@
 }
 .item_title_blue{
   color: #4A90E2;
+}
+.l_eye_positive_level{
+  margin: 0 auto;
+  width: 100%;
+}
+.l_eye_negative_level{
+  margin: 0 auto;
+  width: 100%;
+}
+.r_eye_positive_level{
+  margin: 0 auto;
+  width: 100%;
+}
+.r_eye_negative_level{
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* 左眼正片等级 */
+.head_wrap{
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 32rpx;
+}
+.title{
+  flex: 1;
+  font-size: 36rpx;
+  text-align: left;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-left: 30rpx;
+}
+.op_title{
+  text-align: center;
+  width: 88rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.reduce{
+  margin-top: 20rpx;
+  font-size: 40rpx;
+  width: 80rpx;
+  height: 60rpx;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+.add{
+  margin-top: 20rpx;
+  margin-right: 36rpx;
+  width: 80rpx;
+  height: 60rpx;
+  text-align: center;
+  font-size: 40rpx;
+  background-color: #f5f5f5;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+.times{
+  width: 80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  margin-right: 36rpx;
+  background-color: #f5f5f5;
+  margin: 20rpx 16rpx;
+}
+.body_two_wrap{
+  margin: 20rpx 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  border-bottom: 2rpx solid #f5f5f5;
+  padding-bottom: 72rpx;
+}
+.body_two_item{
+  width: 327rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #f5f5f5;
+  margin-bottom: 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+.body_three_wrap{
+  margin: 20rpx 30rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  border-bottom: 2rpx solid #f5f5f5;
+  padding-bottom: 72rpx;
+}
+.body_three_item{
+  width: 210rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #f5f5f5;
+  margin-bottom: 24rpx;
+  border-radius: 12rpx;
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.repeat_wrap{
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  font-size: 32rpx;
+}
+.rep_title{
+  flex: 1;
+  height: 88rpx;
+}
+.repeat_title{
+  width: 160rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  font-size: 32rpx;
+  text-align: center;
+  color: #4A90E2;
+}
+.repeat_reduce{
+  font-size: 40rpx;
+  width: 80rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-color: #f5f5f5;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+}
+.repeat_times{
+  width: 80rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-color: #f5f5f5;
+  margin: 0 16rpx;
+}
+.repeat_add{
+  margin-right: 36rpx;
+  width: 80rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 40rpx;
+  background-color: #f5f5f5;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+}
+  /* <view class="repeat_wrap">
+    <view class="rep_title"></view>
+    <view class="repeat_title">次数</view>
+    <view class="repeat_reduce">-</view>
+    <view class="repeat_times">3</view>
+    <view class="repeat_add">+</view>
+  </view> */
+/* 底部 */
+.bottom_padding{
+  height: 110rpx;
+  width: 100%;
+}
+.bottom_btn{
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+}
+.btn_cancel{
+  color: white;
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  background-color: #9BC9FF;
+}
+.btn_sure{
+  color: white;
+  width: 50%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 36rpx;
+  background-color: #488CDC;
 }

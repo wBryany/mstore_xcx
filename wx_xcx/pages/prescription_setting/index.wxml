@@ -16,35 +16,82 @@
 
   <!-- 左眼正片等级 -->
   <view class="l_eye_positive_level">
-    <view>
-      <view>左眼正片等级</view>
-      <view>次数</view>
-      <view>-</view>
-      <view>3</view>
-      <view>+</view>
+    <view class="head_wrap">
+      <view class="title">左眼正片等级</view>
+      <view class="op_title">次数</view>
+      <view class="reduce">-</view>
+      <view class="times">3</view>
+      <view class="add">+</view>
     </view>
-    <view>
-      <view>1.50</view>
-      <view>2.50</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item">1.50</view>
+      <view class="body_two_item">2.50</view>
     </view>
   </view>
 
   <!-- 左眼负片等级 -->
   <view class="l_eye_negative_level">
-    <view>
-      <view>左眼负片等级</view>
-      <view>次数</view>
-      <view>-</view>
-      <view>3</view>
-      <view>+</view>
+    <view class="head_wrap">
+      <view class="title">左眼负片等级</view>
+      <view class="op_title">次数</view>
+      <view class="reduce">-</view>
+      <view class="times">3</view>
+      <view class="add">+</view>
     </view>
-    <view>
-      <view>-1.50</view>
-      <view>-2.50</view>
-      <view>-3.50</view>
-      <view>-4.50</view>
-      <view>-6.00</view>
-      <view>-8.00</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item">-1.50</view>
+      <view class="body_three_item">-2.50</view>
+      <view class="body_three_item">-3.50</view>
+      <view class="body_three_item">-4.50</view>
+      <view class="body_three_item">-6.00</view>
+      <view class="body_three_item">-8.00</view>
     </view>
+  </view>
+
+
+    <!-- 右眼正片等级 -->
+  <view class="r_eye_positive_level">
+    <view class="head_wrap">
+      <view class="title">右眼正片等级</view>
+      <view class="op_title">次数</view>
+      <view class="reduce">-</view>
+      <view class="times">3</view>
+      <view class="add">+</view>
+    </view>
+    <view class="body_two_wrap">
+      <view class="body_two_item">1.50</view>
+      <view class="body_two_item">2.50</view>
+    </view>
+  </view>
+
+  <!-- 右眼负片等级 -->
+  <view class="r_eye_negative_level">
+    <view class="head_wrap">
+      <view class="title">右眼负片等级</view>
+      <view class="op_title">次数</view>
+      <view class="reduce">-</view>
+      <view class="times">3</view>
+      <view class="add">+</view>
+    </view>
+    <view class="body_three_wrap">
+      <view class="body_three_item">-1.50</view>
+      <view class="body_three_item">-2.50</view>
+      <view class="body_three_item">-3.50</view>
+      <view class="body_three_item">-4.50</view>
+      <view class="body_three_item">-6.00</view>
+      <view class="body_three_item">-8.00</view>
+    </view>
+  </view>
+  <view class="repeat_wrap">
+    <view class="rep_title"></view>
+    <view class="repeat_title">重复次数</view>
+    <view class="repeat_reduce">-</view>
+    <view class="repeat_times">3</view>
+    <view class="repeat_add">+</view>
+  </view>
+  <view class="bottom_padding"></view>
+  <view class="bottom_btn">
+    <view class="btn_cancel">取消</view>
+    <view class="btn_sure">确定</view>
   </view>
 </view>
