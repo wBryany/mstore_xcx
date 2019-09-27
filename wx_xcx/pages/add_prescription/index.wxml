@@ -2,7 +2,7 @@
 <view class="wrap">
   <view class="head_wrap">
     <view>请选择障碍类型</view>
-    <image></image>
+    <image src="{{src}}"></image>
   </view>
   <view class="presc_wrap">
     <radio-group  bindchange="radioChange">
