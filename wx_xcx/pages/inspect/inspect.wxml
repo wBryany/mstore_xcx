@@ -1,0 +1,14 @@
+<!--初始页 检查中心-->
+<import src="templet/result.wxml"/>
+    <!-- <view class="header">
+        <text>检查结果（{{uyu_nick_name}}）</text>
+    </view> -->
+    <view class="data_Contain">
+        <view class="empty" wx:if="{{!flags}}">
+            <image src="/assets/img/empty.png"></image>
+        </view>
+        <template wx:if="{{flags}}" is="result" data="{{...date,...testData,glasses,amplitude_result}}"></template>
+    </view>
+    <!-- <view class="scan_container" hidden="{{hideScan}}" catchtap="scanHandle">
+        <image src="/assets/img/empty.png" class="scan-icon"></image>
+    </view> -->

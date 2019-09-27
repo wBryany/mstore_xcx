@@ -32,9 +32,7 @@ Page({
     ],
   },
   onShow: function () {
-    this.getTabBar().setData({
-      selected: 0
-    })
+
   },
   //事件处理函数
   onLoad: function() {
@@ -181,3 +179,4 @@ Page({
     })
   },
 })
+

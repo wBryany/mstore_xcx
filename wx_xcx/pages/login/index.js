@@ -147,7 +147,8 @@ this.data.listen_input_account=this.data.mInputaccount;
           console.log("header:" + res.header["Set-Cookie"]);
           wx.setStorageSync('sessionid', res.header["Set-Cookie"]);
           wx.setStorageSync('userid', res.data.data.userid);
-
+          app.globalData.userId = res.data.data.userid;
+          // app.globalData.openId = res.data.data.openid;
           //登录成功
           wx.switchTab({
             url: '../mine/index',

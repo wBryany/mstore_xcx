@@ -8,36 +8,36 @@
 
 
   <view class="items">
-    <view class="child_item">
-      <view>
-       <image ></image> 修改处方
-      </view>
-    </view>
+
     <view class="child_item" bindtap="goAddPrescriprion">
-      <view>
+      <image class="img_style" src="{{xgcf_src}}"></image>
+      <view class="text_style">
+
+
         修改处方
       </view>
     </view>
     <view class="child_item" bindtap="goTrainReport">
-
-      <view>
+      <image class="img_style" src="{{xlbg_src}}"></image>
+      <view class="text_style">
         训练报告
       </view>
     </view>
-    <view class="child_item">
-
-      <view>
+    <view class="child_item" bindtap="goCheckReport">
+      <image class="img_style" src="{{jcbg_src}}" ></image>
+      <view class="text_style">
         检查报告
       </view>
     </view>
     <view class="child_item" bindtap="goAlterRecord">
-
-      <view>
+      <image class="img_style" src="{{cfjl_src}}"></image>
+      <view class="text_style">
         处方记录
       </view>
     </view>
     <view class="child_item" bindtap="goAssignTrainTimes">
-      <view>
+      <image class="img_style" src="{{ckgl_src}}"></image>
+      <view class="text_style">
         次卡管理
       </view>
     </view>

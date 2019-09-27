@@ -1,20 +1,20 @@
-<view class="tab-bar">
+<cover-view class="tab-bar">
 
-  <view class="item">
+  <cover-view class="item">
 
-    <view class="child_item  {{selected == 0 ?'bg_selected':'bg_dis_selected'}}" bindtap="click_mine">
+    <cover-view class="child_item  {{selected == 0 ?'bg_selected':'bg_dis_selected'}}" bindtap="click_mine">
 
-      <image class="img_class" src="{{selected == 0 ? '/assets/img/mine_selected.png' : '/assets/img/mine_dis_select.png'}}"></image>
-      <view class="font_style  {{selected == 0 ?'font_color_selected':'font_color_dis_selected'}} ">我的</view>
+      <cover-image class="img_class" src="{{selected == 0 ? '/assets/img/mine_selected.png' : '/assets/img/mine_dis_select.png'}}"></cover-image>
+      <cover-view class="font_style  {{selected == 0 ?'font_color_selected':'font_color_dis_selected'}} ">我的</cover-view>
 
-    </view>
+    </cover-view>
 
-    <view class="child_item {{selected == 1 ?'bg_selected':'bg_dis_selected'}}" bindtap="click_user">
-      <image class="img_class" src="{{selected == 1 ? '/assets/img/user_selected.png' : '/assets/img/user_dis_select.png'}}"></image>
-      <view class="font_style {{selected == 1 ?'font_color_selected':'font_color_dis_selected'}}">用户</view>
+    <cover-view class="child_item {{selected == 1 ?'bg_selected':'bg_dis_selected'}}" bindtap="click_user">
+      <cover-image class="img_class" src="{{selected == 1 ? '/assets/img/user_selected.png' : '/assets/img/user_dis_select.png'}}"></cover-image>
+      <cover-view class="font_style {{selected == 1 ?'font_color_selected':'font_color_dis_selected'}}">用户</cover-view>
 
-    </view>
-  </view>
+    </cover-view>
+  </cover-view>
 
 
-</view>
+</cover-view>

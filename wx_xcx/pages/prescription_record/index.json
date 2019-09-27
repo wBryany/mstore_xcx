@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "处方记录",
-  "disableScroll": true
+	"navigationBarTitleText":"训练中心",
+	"enablePullDownRefresh":true,
+	"usingComponents": {
+		"ec-canvas": "../../ec-canvas/ec-canvas"
+	}
 }

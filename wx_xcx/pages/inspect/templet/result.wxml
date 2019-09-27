@@ -1,0 +1,339 @@
+<!--检查数据展示模板-->
+<template name="result">
+    <view class="section">
+        <view class="date_Contain">
+            <scroll-view scroll-x="true" style="height:80rpx;" bindscroll="date_scroll">
+                <view class="date_bar" style="width:{{bodyList.length*250}}rpx;">
+                    <!--计算不准确width-->
+                    <block wx:for-items="{{bodyList}}" wx:for-item="item" wx:key="{{index}}">
+                        <view id="{{index}}" class="date_box {{activeIndex == index ? 'active_s' : ''}}" bindtap="tabClick" style="color:{{activeIndex == index?'#4eb679':''}}">
+                            <view class="date_moment {{activeIndex == index ? 'active_t' : ''}}">{{item.moment}}</view>
+                            <view class="date_mes {{activeIndex == index ? 'active_m' : ''}}">{{item.title}}</view>
+                        </view>
+                        <!--<view id="{{index}}" style="background-color: {{activeIndex == index ? '#4BB77F':''}};color: {{activeIndex == index ? '#ffffff':'black'}}" class="date_box {{activeIndex == index ? 'active_s' : ''}}" bindtap="tabClick">-->
+                            <!--<view class="date_mes">{{item.title}}</view>-->
+                        <!--</view>-->
+                    </block>
+                    <view class="float_bar" style="transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="train_data">
+            <view wx:if="{{ flag1 }}" class='item1'>
+              <view class='head'>
+                <view class='item-title'><text>视力</text></view>
+                <view class='choice-glasses'>
+                  <text class="{{ glasses==1?'is-glasses':'' }}">戴镜</text>
+                  <text class="{{ glasses==2?'is-glasses':'' }}">裸眼</text>
+                </view>
+              </view>
+              <view class='item1-result'>
+                <view class='vision'>
+                  <view class='far-vision'>
+                    <view style='color:#4eb679;'>
+                      <text>远视力</text>
+                    </view>
+                    <view>
+                      <text>右：{{ f_vision_r }}</text>
+                    </view>
+                    <view>
+                      <text>左：{{ f_vision_l }}</text>
+                    </view>
+                    <view>
+                      <text>双：{{ f_vision_b }}</text>
+                    </view>
+                  </view>
+                  <view class='near-vision'>
+                    <view style='color:#4eb679;'>
+                      <text>近视力</text>
+                    </view>
+                    <view>
+                      <text>右：{{ n_vision_r }}</text>
+                    </view>
+                    <view>
+                      <text>左：{{ n_vision_l }}</text>
+                    </view>
+                    <view>
+                      <text>双：{{ n_vision_b }}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag2 }}" class='item2'>
+              <view class='head'>
+                <view class='item-title'><text>红绿对比</text></view>
+              </view>
+              <view class='item2-result'>
+                <view class='rg-contrast'>
+                  <view>
+                    <text>右：{{ contrast_r }}</text>
+                  </view>
+                  <view>
+                    <text>左：{{ contrast_l }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item2-bottom'>
+                <view class='item2-bottom-con'>
+                  <view>
+                    <text>右：红绿一样清晰</text>
+                  </view>
+                  <view>
+                    <text>左：红绿一样清晰</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag3 }}" class='item3'>
+              <view class='head'>
+                <view class='item-title'><text>双眼视</text></view>
+              </view>
+              <view class='item3-result'>
+                <view class='b-vision'>
+                  <view>
+                    <text>远Worth4点：{{ worth_f }}</text>
+                  </view>
+                  <view>
+                    <text>近Worth4点：{{ worth_n }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item3-bottom'>
+                <view class='item3-bottom-con'>
+                  <view>
+                    <text>远Worth4点：4个图形</text>
+                  </view>
+                  <view>
+                    <text>近Worth4点：4个图形</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag4 }}" class='item4'>
+              <view class='head'>
+                <view class='item-title'><text>水平眼位</text></view>
+              </view>
+              <view class='item4-result'>
+                <view class='horizontal-eye'>
+                  <view>
+                    <text>远眼位：{{ position_f }}</text>
+                  </view>
+                  <view>
+                    <text>近眼位：{{ position_n }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item4-bottom'>
+                <view class='item4-bottom-con'>
+                  <view>
+                    <text>远眼位：≤3∆</text>
+                  </view>
+                  <view>
+                    <text>近眼位：≤5∆</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag5 }}" class='item5'>
+              <view class='head'>
+                <view class='item-title'><text>水平聚散</text></view>
+              </view>
+              <view class='item5-result'>
+                <view class='horizontal-fusion'>
+                  <view>
+                    <text>远BI：{{ horizontal_dispersion_fbi }}</text>
+                  </view>
+                  <view>
+                    <text>远BO：{{ horizontal_dispersion_fbo }}</text>
+                  </view>
+                </view>
+                <view class='horizontal-fusion'>
+                  <view>
+                    <text>近BI：{{ horizontal_dispersion_nbi }}</text>
+                  </view>
+                  <view>
+                    <text>近BO：{{ horizontal_dispersion_nbo }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item5-bottom'>
+                <view class='item5-bottom-con'>
+                  <view class='item5-bottom-part'>
+                    <view>
+                      <text>远BI：X/5-9/3-5</text>
+                    </view>
+                    <view>
+                      <text>远BO：7-11/15-23/8-12</text>
+                    </view>
+                  </view>
+
+                  <view class='item5-bottom-part'>
+                    <view>
+                      <text>近BI：11-15/19-23/8-12</text>
+                    </view>
+                    <view>
+                      <text>近BO：11-21/18-28/7-15</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+
+            </view>
+            <view wx:if="{{ flag6 }}" class='item6'>
+              <view class='head'>
+                <view class='item-title'><text>调节功能</text></view>
+              </view>
+              <view class='item6-result'>
+                <view class='adjust-range'>
+                  <view class='negative-relative-regulation'>
+                    <view style='color:#4eb679;'>
+                      <text>负相对调节</text>
+                    </view>
+                    <view>
+                      <text>右：{{ adjust_loss_r }}</text>
+                    </view>
+                    <view>
+                      <text>左：{{ adjust_loss_l }}</text>
+                    </view>
+                    <view>
+                      <text>双：{{ adjust_loss_b }}</text>
+                    </view>
+                  </view>
+                  <view class='negative-relative-regulation'>
+                    <view style='color:#4eb679;'>
+                      <text>正相对调节</text>
+                    </view>
+                    <view>
+                      <text>右：{{ adjust_loss_pra_r }}</text>
+                    </view>
+                    <view>
+                      <text>左：{{ adjust_loss_pra_l }}</text>
+                    </view>
+                    <view>
+                      <text>双：{{ adjust_loss_pra_b }}</text>
+                    </view>
+                  </view>
+                  <view class='adjustment'>
+                    <view style='color:#4eb679;'>
+                      <text>调节幅度</text>
+                    </view>
+                    <view>
+                      <text>右：{{ adjust_range_r }}</text>
+                    </view>
+                    <view>
+                      <text>左：{{ adjust_range_l }}</text>
+                    </view>
+                    <view>
+                      <text>双：{{ adjust_range_b }}</text>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class='item6-bottom'>
+                <view class='item6-bottom-con'>
+                  <view>
+                    <text>负相对调节：+2.50D</text>
+                  </view>
+                  <view>
+                    <text>正相对调节：≥-3.00D</text>
+                  </view>
+                  <view>
+                    <text>调节幅度：{{amplitude_result}}</text>
+                  </view>
+                  <view>
+                    <text> </text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag7 }}" class='item7'>
+              <view class='head'>
+                <view class='item-title'><text>AC/A</text></view>
+              </view>
+              <view class='item7-result'>
+                <view class='ac-a'>
+                  <view>
+                    <text>{{ ac_a }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item7-bottom'>
+                <view class='item7-bottom-con'>
+                  <view>
+                    <text>AC/A：3--7∆</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag8 }}" class='item8'>
+              <view class='head'>
+                <view class='item-title'><text>立体视</text></view>
+              </view>
+              <view class='item8-result'>
+                <view class='stereopsis'>
+                  <view>
+                    <text>交叉：{{ overlapping }}</text>
+                  </view>
+                  <view>
+                    <text>非交叉：{{ non_cross }}</text>
+                  </view>
+                  <view>
+                    <text>视锐度：{{ visual_acuity }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view wx:if="{{ flag9 }}" class='item9'>
+              <view class='head'>
+                <view class='item-title'><text>色觉</text></view>
+              </view>
+              <view class='item9-result'>
+                <view class='color-sense'>
+                  <view>
+                    <text>红色：{{ color_sense11 }}</text>
+                  </view>
+                  <view>
+                    <text>绿色：{{ color_sense12 }}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- <view class='item10' style="height:{{3*430+80}}rpx"> -->
+            <view wx:if="{{ flag10 }}" class='item10' >
+              <view class='head'>
+                <view class='item-title'><text>调节灵活度</text></view>
+              </view>
+
+              <view wx:if="{{ item.isShow }}" wx:for="{{ adjustArray }}" wx:key="{{ index }}" class='item10-result'>
+              <view class='itme10-data'>
+                <view class='itme10-data-left'><text>{{ item.name }}</text></view>
+                <view class='itme10-data-right'>
+                    <view><text>正常:{{ item.cycle }}周期/分钟</text></view> 
+                </view>
+              </view>
+              <view class='item10-Chart' id="{{ item.idx }}">
+                <canvas disable-scroll="true" canvas-id="lineCanvas_{{ item.idx }}" class='canvas' bindtouchstart="touchHandler{{ item.idx }}" bindtouchmove="moveHandler{{ item.idx }}" bindtouchend="touchEndHandler{{ item.idx }}"></canvas>
+              </view>
+            </view>
+
+            </view>
+            <view wx:if="{{ flag11 }}" class='item11'>
+              <view class='head'>
+                <view class='item-title'><text>聚散灵活度</text></view>
+              </view>
+              <view class='item11-result'>
+                <view class='item11-data'>
+                  <view class='item11-data-left'><text>{{ meetingparting }}</text></view>
+                  <view class='item11-data-right'>
+                    <view><text>正常:15周期/分钟</text></view>
+                  </view>
+                </view>
+                <view class='item11-Chart'>
+                  <canvas disable-scroll="true" canvas-id="lineCanvas_3" class='canvas' bindtouchstart="touchHandler3" bindtouchmove="moveHandler3" bindtouchend="touchEndHandler3"></canvas>
+                </view>
+              </view>
+            </view>
+        </view>
+    </view>
+</template>

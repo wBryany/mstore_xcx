@@ -49,3 +49,13 @@ page {
   border-bottom: 1rpx solid #e4e4e4;
   /* border-right: 1rpx solid #e4e4e4; */
 }
+
+.img_style{
+  width: 60rpx;
+  height: 80rpx;
+}
+.text_style{
+  font-size: 32rpx;
+  color: #4a90e2;
+  margin-left: 40rpx;
+}

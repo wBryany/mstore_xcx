@@ -1,10 +1,89 @@
-<!--pages/prescription_record/index.wxml-->
+<!--训练中心-->
+<view class="score_chart">
+  <view class="train_items">
+    <view class="train_items_slider" style="width: 100%;">
+      <view class="item" bindtap="selectType" data-type="0" style="color:{{scoreType==0?'#4a90e2':''}}">
+        <text>调节</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="1" style="color:{{scoreType==1?'#4a90e2':''}}">
+        <text>集合</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="2" style="color:{{scoreType==2?'#4a90e2':''}}">
+        <text>散开</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="3" style="color:{{scoreType==3?'#4a90e2':''}}">
+        <text>三联动</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="4" style="color:{{scoreType==4?'#4a90e2':''}}">
+        <text>脱抑制</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="5" style="color:{{scoreType==5?'#4a90e2':''}}">
+        <text>阅读效率</text>
+      </view>
+      <view class="item" bindtap="selectType" data-type="6" style="color:{{scoreType==6?'#4a90e2':''}}">
+        <text>其他</text>
+      </view>
+    </view>
+    <view class="float_bar" style="width: {{scoreItemNodeArr[scoreType].width}}px; transform: translateX({{scoreItemNodeArr[scoreType].left}}px); -webkit-transform: translateX({{scoreItemNodeArr[scoreType].left}}px);"></view>
+  </view>
+  <view class="chart_container">
+    <canvas disable-scroll="true" canvas-id="lineCanvas" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
+  </view>
+  <view class="transcend">
+    <!-- <view class="transcend_content">
+                <view class="icon_before"></view>
+                <view class="transcend_mess">
+                    总分击败了全国61%的人
+                </view>
+                <view class="icon_after"></view>
+            </view> -->
+  </view>
+</view>
+<view class="singleScore">
+  <view class="singleScore_title">
+    <text>单项得分</text>
+  </view>
+  <view class="singleScore_wrap" style="padding-top: {{singleScoreFiexd?'80':''}}rpx">
+    <view class="singleScore_left">
+      <view class="singleScore_header_l {{singleScoreFiexd?'singleScoreFiexd':''}}">
+        <view>项目</view>
+        <view>类型</view>
+      </view>
+      <view class="singleScore_item_l" wx:for="{{singleScoreObj}}" wx:for-item="item" wx:key="{{index}}" style="height: {{item.len*90}}rpx">
+        <view>
+          <text>{{item.name}}</text>
+          <text wx:if="{{item.level!=''}}" style="background-color: {{item.levelColor}}">{{item.level}}</text>
+        </view>
+        <view>
+          <view wx:for="{{item.classify}}" wx:for-item="item_1" wx:key="{{index}}">{{item_1.name}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="singleScore_right">
+      <scroll-view class="singleScore_header_r {{singleScoreFiexd?'singleScoreFiexd':''}}" scroll-x="true" scroll-left="{{singleScoreScrollLeft}}">
+        <view style="width: {{singleScoreMaxLength*110}}rpx">
+          <view wx:for="{{singleScoreMaxLength}}" wx:key="{{index}}">
+            第{{item+1}}次
+          </view>
+        </view>
+      </scroll-view>
+      <view class="singleScore_header_r_mask {{singleScoreFiexd?'singleScoreFiexd':''}}" capture-catch:touchmove="emptyHandle"></view>
+      <scroll-view class="singleScore_item_wrap" scroll-x="true" bindscroll="scoreScrollHandle">
+        <view class="singleScore_item_r" wx:for="{{singleScoreObj}}" wx:for-item="item" wx:key="{{index}}" style="height: {{item.len*90}}rpx;width: {{singleScoreMaxLength*110}}rpx">
+          <view wx:for="{{item.classify}}" wx:for-item="item_1" wx:key="{{index}}">
+            <view wx:for="{{singleScoreMaxLength}}" wx:for-item="item_2" wx:key="{{index}}">
+              <view class="border_class" style="color: {{['#4a90e2','#f26d3f'][index%2]}}" wx:if="{{item_1.data[item_2]!=undefined?true:false}}">{{item_1.data[item_2]}}分</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<!-- <cover-view class="scan_container" hidden="{{hideScan}}" catchtap="scanHandle">
+  <cover-image src="../../image/scan_train.png" class="scan-icon"></cover-image>
+</cover-view> -->
 
-<view>
-  <view style="margin-top:200rpx; width:100%; text-align: center;">折线图</view>
-  <view style="width:100%; text-align: center;">+</view>
-  <view style="width:100%; text-align: center;">原始门店训练报告</view>
-</view>
-<view class="btn_wrap">
-  <button>确认添加</button>
-</view>
+<cover-view class="report_class" bindtap="toreportPage">
+  <cover-image src="/assets/img/perfesional_report.png" class="report_icon_class"></cover-image>
+</cover-view>

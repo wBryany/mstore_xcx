@@ -5,18 +5,20 @@
     "pages/user/index",
     "pages/new_user/index",
     "pages/assign_train_time/index",
-    "pages/prescription_record/index",
     "pages/alter_record/index",
     "pages/add_prescription/index",
     "pages/prescription_detail/index",
     "pages/add_train_plan/index",
     "pages/prescription_setting/index",
+    "pages/prescription_record/index",
     "pages/user_detail/index",
     "pages/fp_record/index",
     "pages/device/index",
     "pages/new_sgs/index",
     "pages/sgs_page/index",
-    "pages/modify_record/index"
+    "pages/modify_record/index",
+    "pages/inspect/inspect",
+    "pages/report_webview/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -25,7 +27,9 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "custom": true,
+    "color": "#e4e4e4",
+    "selectedColor": "#4a90e2",
+    "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/mine/index",

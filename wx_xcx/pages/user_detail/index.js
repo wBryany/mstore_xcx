@@ -6,40 +6,55 @@ Page({
   data: {
 
     src: '/assets/img/logo.png',
+    xgcf_src: '/assets/img/xgcf.png',
+    xlbg_src: '/assets/img/xlbg.png',
+    jcbg_src: '/assets/img/jcbg.png',
+    cfjl_src: '/assets/img/cfjl.png',
+    ckgl_src: '/assets/img/ckgl.png',
     userInfo: {},
-  
-    
+
+
   },
 
   onReady: function() {
 
-   
+
   },
   onLoad: function(option) {
 
-    // console.log(option.info);
-    // this.userInfo=JSON.parse(option.info);
-    // wx.setNavigationBarTitle({
-    //   title: this.userInfo.nick_name,
-    // })
+    console.log(option.info);
+    this.userInfo=JSON.parse(option.info);
+    wx.setNavigationBarTitle({
+      title: this.userInfo.nick_name,
+    })
 
   },
-  goAddPrescriprion: function () {
+  goCheckReport(){
+  
+    wx.navigateTo({
+      url: '/pages/inspect/inspect',
+    })
+  },
+  goAddPrescriprion: function() {
     wx.navigateTo({
       url: '/pages/add_prescription/index',
     })
   },
-  goAlterRecord: function (){
+  goAlterRecord: function() {
+
+
+
+    let _this=this;
     wx.navigateTo({
-      url: '/pages/alter_record/index',
+      url: '/pages/alter_record/index?userinfo=' + JSON.stringify(_this.userInfo),
     })
   },
-  goTrainReport: function () {
+  goTrainReport: function() {
     wx.navigateTo({
       url: '/pages/prescription_record/index',
     })
   },
-  goAssignTrainTimes: function () {
+  goAssignTrainTimes: function() {
     wx.navigateTo({
       url: '/pages/assign_train_time/index',
     })

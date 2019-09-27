@@ -1,3 +1,4 @@
+
 //index.js
 //获取应用实例
 const app = getApp()
@@ -14,12 +15,9 @@ Page({
   },
 
   onShow: function() {
-    this.getTabBar().setData({
-      selected: 1
-    })
+  
   },
   onReady: function() {
-
     this.getList();
   },
   onLoad: function() {
@@ -136,3 +134,4 @@ Page({
     });
   }
 })
+
