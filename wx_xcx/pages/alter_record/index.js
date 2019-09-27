@@ -69,6 +69,19 @@ getdata(){
 
 
 
+      } else if (res.data.respcd == '2002') {
+        //session 过期跳转到登录页
+
+        wx.setStorageSync('sessionid', '');
+        wx.setStorageSync('userid', '');
+        wx.showToast({
+          title: '登录信息已失效,请重新登录',
+          icon: 'none'
+        })
+        wx.reLaunch({
+          url: '../login/index'
+        })
+
       }
     },
  complete() {

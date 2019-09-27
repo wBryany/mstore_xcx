@@ -5,10 +5,10 @@ var MD5Util = require("../../assets/md5.js")
 
 Page({
   data: {
-    // mInputaccount: '',
-    // mInputpwd: '',
-    mInputaccount: '10001010001',
-    mInputpwd: '010001',
+    mInputaccount: '',
+    mInputpwd: '',
+    // mInputaccount: '10001010001',
+    // mInputpwd: '010001',
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
@@ -22,7 +22,7 @@ Page({
 
   onReady: function() {
 
-this.data.listen_input_account=this.data.mInputaccount;
+    this.data.listen_input_account = this.data.mInputaccount;
     this.data.listen_input_pwd = this.data.mInputpwd;
     if (this.data.mInputaccount !== '' && this.data.mInputpwd !== '') {
       this.data.login_btn_enable = true;
@@ -43,32 +43,16 @@ this.data.listen_input_account=this.data.mInputaccount;
     })
   },
   onLoad: function() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
+  
+    if (wx.getStorageSync("sessionid") !== '' && wx.getStorageSync("userid")!==''){
+      //session 不等于空
+      app.globalData.userId = wx.getStorageSync("userid");
+      wx.switchTab({
+        url: '../mine/index',
       })
     }
+
+
   },
   input_accout_listen(e) {
     this.data.listen_input_account = e.detail.value;
@@ -116,11 +100,6 @@ this.data.listen_input_account=this.data.mInputaccount;
     })
   },
   login: function(e) {
-
-    // wx.navigateTo({
-    //   url: '/pages/prescription_setting/index',
-    // })
-    // return;
     wx.showLoading({
       title: '请稍后...',
       mask: true
@@ -162,6 +141,19 @@ this.data.listen_input_account=this.data.mInputaccount;
             title: '登录成功',
             icon: 'none'
           });
+
+        } else if (res.data.respcd == '2002') {
+          //session 过期跳转到登录页
+
+          wx.setStorageSync('sessionid', '');
+          wx.setStorageSync('userid', '');
+          wx.showToast({
+            title: '登录信息已失效,请重新登录',
+            icon: 'none'
+          })
+          wx.reLaunch({
+            url: '../login/index'
+          })
 
         }
       },
