@@ -5,14 +5,13 @@
     <image></image>
   </view>
   <view class="presc_wrap">
-    <view class="row_wrap">
-      <view>1、假性近视（角塑配合）</view>
-      <radio class="sel_radio"></radio>
-    </view>
-    <view class="row_wrap">
-      <view>2、假性近视（角塑配合）</view>
-      <radio class="sel_radio" checked></radio>
-    </view>
+    <radio-group  bindchange="radioChange">
+      <view class="row_wrap" wx:key="key"  wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}">
+        <view>{{item.name}}</view>
+        <radio class="sel_radio" value="{{item.id}}" ></radio>
+      </view>
+    </radio-group>
+
   </view>
   <view class="btn_wrap">
     <button bindtap="goPrescDetail">确认添加</button>

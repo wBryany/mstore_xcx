@@ -24,6 +24,7 @@
   margin: 0 auto;
   width: 100%;
   font-size: 32rpx;
+    margin-bottom: 200rpx;
 }
 .row_wrap{
   margin: 0 36rpx;
@@ -79,6 +80,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   bottom: 40rpx;
   left: 36rpx;
   right: 36rpx;
+
 }
 .btn_wrap button{
   margin: 0 auto;
