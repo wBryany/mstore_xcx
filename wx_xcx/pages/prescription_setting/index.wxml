@@ -15,36 +15,191 @@
   
 
   <!-- 左眼正片等级 -->
-  <view class="l_eye_positive_level">
-    <view>
-      <view>左眼正片等级</view>
-      <view>次数</view>
-      <view>-</view>
-      <view>3</view>
-      <view>+</view>
+  <view class="l_eye_positive_level" hidden="{{!(item_select_name == 'FlipBeat_d' || item_select_name == 'FlipBeat_l')}}">
+    <view class="head_wrap">
+      <view class="title">{{item_select.content.params[0].name_cn}}</view>
+      <view class="op_title">次数</view>
+      <view class="reduce" bindtap="lPositiveDegreeLevelReduce">-</view>
+      <view class="times">{{item_select.content.params[2].select.text}}</view>
+      <view class="add" bindtap="lPositiveDegreeLevelAdd">+</view>
     </view>
-    <view>
-      <view>1.50</view>
-      <view>2.50</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="lPositiveDegreeLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
     </view>
   </view>
 
   <!-- 左眼负片等级 -->
-  <view class="l_eye_negative_level">
-    <view>
-      <view>左眼负片等级</view>
-      <view>次数</view>
-      <view>-</view>
-      <view>3</view>
-      <view>+</view>
+  <view class="l_eye_negative_level" hidden="{{!(item_select_name == 'FlipBeat_d' || item_select_name == 'FlipBeat_l')}}">
+    <view class="head_wrap">
+      <view class="title">{{item_select.content.params[1].name_cn}}</view>
+      <view class="op_title">次数</view>
+      <view class="reduce" bindtap="lNegativeDegreeLevelReduce">-</view>
+      <view class="times">{{item_select.content.params[3].select.text}}</view>
+      <view class="add" bindtap="lNegativeDegreeLevelAdd">+</view>
     </view>
-    <view>
-      <view>-1.50</view>
-      <view>-2.50</view>
-      <view>-3.50</view>
-      <view>-4.50</view>
-      <view>-6.00</view>
-      <view>-8.00</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[1].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[1].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="lNegativeDegreeLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
     </view>
+  </view>
+
+
+    <!-- 右眼正片等级 -->
+  <view class="r_eye_positive_level" hidden="{{!(item_select_name == 'FlipBeat_d' || item_select_name == 'FlipBeat_r')}}">
+    <view class="head_wrap">
+      <view class="title">{{item_select.content.params[4].name_cn}}</view>
+      <view class="op_title">次数</view>
+      <view class="reduce" bindtap="rPositiveDegreeLevelReduce">-</view>
+      <view class="times">{{item_select.content.params[6].select.text}}</view>
+      <view class="add" bindtap="rPositiveDegreeLevelAdd">+</view>
+    </view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[4].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[4].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rPositiveDegreeLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 右眼负片等级 -->
+  <view class="r_eye_negative_level" hidden="{{!(item_select_name == 'FlipBeat_d' || item_select_name == 'FlipBeat_r')}}">
+    <view class="head_wrap">
+      <view class="title">{{item_select.content.params[5].name_cn}}</view>
+      <view class="op_title">次数</view>
+      <view class="reduce" bindtap="rNegativeDegreeLevelReduce">-</view>
+      <view class="times">{{item_select.content.params[7].select.text}}</view>
+      <view class="add" bindtap="rNegativeDegreeLevelAdd">+</view>
+    </view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[5].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[5].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rNegativeDegreeLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+  
+
+  <!-- 红绿固定初级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'RedGreenFixed_j')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="redGreenFixed_j_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 红绿固定高级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'RedGreenFixed_h')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="redGreenFixed_h_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 红绿可变初级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'RgVariable_j')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rgVariable_j_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+    <view class="head_only_title_wrap">{{item_select.content.params[1].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[1].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[1].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rgVariable_j_MoveLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+      <view class="body_three_item" style="background-color: white;"></view>
+    </view>
+  </view>
+  
+  <!-- 红绿可变高级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'RgVariable_h')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rgVariable_h_TrainTypeAction"  data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+    <view class="head_only_title_wrap">{{item_select.content.params[1].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[1].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[1].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rgVariable_h_MoveLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+      <view class="body_three_item" style="background-color: white;"></view>
+    </view>
+  </view>
+
+  <!-- 裂隙尺训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'SlitRuler')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="slitRulerTrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 立体镜初级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'Stereoscopic_j')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="stereoscopic_j_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+  
+  <!-- 立体镜中级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'Stereoscopic_m')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_two_wrap">
+      <view class="body_two_item {{(item.text != item_select.content.params[0].select.text) ? 'body_two_item_grey' : 'body_two_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="stereoscopic_m_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 立体镜高级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'Stereoscopic_h')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="stereoscopic_h_TrainTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+  
+  <!-- 扫视训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'ToGlance')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="toGlanceFontLevelAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+      <view class="body_three_item" style="background-color: white;"></view>
+    </view>
+  </view>
+
+  <!-- 追随训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'Follow')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="followLineTypeAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+    </view>
+  </view>
+
+  <!-- 红绿阅读初级训练 不选属性-->
+
+  <!-- 红绿阅读中级训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'RgReading_m')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="rgReading_m_FontLevelAction" data-selectitem="{{item}}" >{{item.text}}</view>
+      <view class="body_three_item" style="background-color: white;"></view>
+    </view>
+  </view>
+  
+  <!-- 生理性复视训练 -->
+  <view class="attribuite_wrap" hidden="{{!(item_select_name == 'PhysiologicDiplopia')}}">
+    <view class="head_only_title_wrap">{{item_select.content.params[0].name_cn}}</view>
+    <view class="body_three_wrap">
+      <view class="body_three_item {{(item.text != item_select.content.params[0].select.text) ? 'body_three_item_grey' : 'body_three_item_blue'}}" wx:for="{{item_select.content.params[0].value}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.text}}" bindtap="physiologicDiplopiaStickPositionAction" data-bindex="{{idx}}" data-selectitem="{{item}}">{{item.text}}</view>
+      <view class="body_three_item" style="background-color: white;"></view>
+    </view>
+  </view>
+
+  <!-- 推进训练 不选属性 -->
+
+
+
+
+  <!-- 重复次数都有 -->
+  <view class="repeat_wrap">
+    <view class="rep_title"></view>
+    <view class="repeat_title">重复次数</view>
+    <view class="repeat_reduce" bindtap="repeatTimeReduceAction">-</view>
+    <view class="repeat_times">{{item_train_repeat_times}}</view>
+    <view class="repeat_add" bindtap="repeatTimeAddAction">+</view>
+  </view>
+  <!-- 底部按钮 -->
+  <view class="bottom_padding"></view>
+  <view class="bottom_btn">
+    <view class="btn_cancel" bindtap="cancelAction">取消</view>
+    <view class="btn_sure" bindtap="sureAction">确定</view>
   </view>
 </view>
