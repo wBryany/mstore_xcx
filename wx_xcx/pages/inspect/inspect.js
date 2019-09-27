@@ -194,6 +194,19 @@ Page({
             that.data.date.bodyList = [];//置空存放日期的数组 用于更新数据
             that.getDate(globalss);//生成日期
             that.renderData(globalss);//渲染数据
+          } else if (res.data.respcd == '2002') {
+            //session 过期跳转到登录页
+
+            wx.setStorageSync('sessionid', '');
+            wx.setStorageSync('userid', '');
+            wx.showToast({
+              title: '登录信息已失效,请重新登录',
+              icon: 'none'
+            })
+            wx.reLaunch({
+              url: '../login/index'
+            })
+
           } else {
             that.setData({
               flags: false
@@ -268,6 +281,19 @@ Page({
                             icon: 'success',
                             duration: 2000
                         })
+                    } else if (res.data.respcd == '2002') {
+                      //session 过期跳转到登录页
+
+                      wx.setStorageSync('sessionid', '');
+                      wx.setStorageSync('userid', '');
+                      wx.showToast({
+                        title: '登录信息已失效,请重新登录',
+                        icon: 'none'
+                      })
+                      wx.reLaunch({
+                        url: '../login/index'
+                      })
+
                     }else {
                         wx.showToast({
                             title: '创建失败',

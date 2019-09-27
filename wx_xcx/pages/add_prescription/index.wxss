@@ -3,6 +3,7 @@
   margin: 0 auto;
   width: 100%;
 }
+
 .head_wrap{
   margin: 0 auto;
   display: flex;
@@ -16,8 +17,8 @@
 }
 .head_wrap image{
   margin-top: 20rpx;
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .presc_wrap{
   margin: 0 auto;
@@ -88,4 +89,11 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   color: white;
   font-size: 32rpx;
   line-height: 88rpx;
+}
+
+.divide_line{
+  width: 100%;
+  height: 1rpx;
+  background: #e4e4e4;
+
 }

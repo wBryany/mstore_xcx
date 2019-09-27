@@ -68,7 +68,7 @@ Page({
   },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
-    this.data.selected_item=mydata[e.detail.value-1];
+    this.data.selected_item=this.data.mydata[e.detail.value-1];
     
   },
   getdataList() {
@@ -100,6 +100,19 @@ Page({
 
             mydata: res.data.data.obstacles
           })
+        } else if (res.data.respcd == '2002'){
+          //session 过期跳转到登录页
+
+          wx.setStorageSync('sessionid','');
+          wx.setStorageSync('userid','');
+          wx.showToast({
+            title: '登录信息已失效,请重新登录',
+            icon:'none'
+          })
+          wx.reLaunch({
+            url: '../login/index'
+          })
+
         }
       },
       complete() {
