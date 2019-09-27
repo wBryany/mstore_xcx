@@ -746,14 +746,11 @@ Page({
       canvasId: 'lineCanvas',
       type: 'area',
       categories: dateArr,
+      
       animation: true,
       series: [{
 
         type:'line',
-        areaStyle: {
-          color: '#4a90e2',
-          origin:'auto'
-        },
         name: '得分',
         data: dataArr,
         color: '#4a90e2',

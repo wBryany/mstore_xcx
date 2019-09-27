@@ -1129,7 +1129,7 @@ function drawAreaDataPoints(series, opts, config, context) {
     var ctx = wx.createCanvasContext(opts.canvasId);
     // var grad  = ctx.createLinearGradient(0,0, 0,140);
     // var grad = '#4eb679';
-    var grad = 'rgba(72,177,106,0.3)';
+  var grad = 'rgba(74,144,226,0.3)';
     /* 指定几个颜色 */
     // grad.addColorStop(0,'rgb(58, 151, 87)');    //
     // grad.addColorStop(0.7,'rgb(58, 151, 87)'); //
