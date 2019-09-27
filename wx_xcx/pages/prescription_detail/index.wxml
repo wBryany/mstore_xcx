@@ -3,7 +3,7 @@
   <view class="head_wrap">
     <radio class="sel_radio" disabled="flase" checked></radio>
     <view>请选择障碍类型</view>
-    <image></image>
+    <image src="{{src}}"></image>
   </view>
   <view class="stat_wrap">
     <view class="stat_frist">共5项训练项目，预估时间：1小时</view>
@@ -21,23 +21,29 @@
     <view class="del_wrap">删除</view>
   </view>
 
-  <view class="row_wrap">
+  <view class="row_wrap" wx:for="{{schemes}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.item_name}}" data-bindex="{{idx}}" data-selectitem="{{item}}">
     <view class="row_head">
-      <view class="train_name">红绿固定初级训练</view>
+      <view class="train_name">{{item.item_name}}</view>
       <view class="train_detial">BI/BO:BI</view>
       <view class="train_times">次数(3)</view>
     </view>
     <view class="row_down">
-      <view>下</view>
+      <view>
+        <image class="row_img" src="{{icon_down_src}}"></image>
+      </view>
     </view>
     <view class="row_up">
-      <view>上</view>
+      <view>
+        <image class="row_img" src="{{icon_up_src}}"></image>
+      </view>
     </view>
     <view class="row_del">
-      <view>X</view>
+      <view>
+        <image class="row_img" src="{{icon_del_src}}"></image>
+      </view>
     </view>
   </view>
-
+  <view style="width: 100%; height: 240rpx"></view>
   <view class="btn_wrap" bindtap="goPrescSetting">
     <view><text class="btn_add">+</text><text class="btn_content">添加方案</text></view>
   </view>

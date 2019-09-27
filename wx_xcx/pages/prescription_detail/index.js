@@ -5,14 +5,50 @@ Page({
    * 页面的初始数据
    */
   data: {
+    src: "/assets/img/edit.png",
+    icon_del_src: "/assets/img/icon_del.png",
+    icon_down_src: "/assets/img/icon_down.png",
+    icon_up_src: "/assets/img/icon_up.png",
     
+
+
+    schemes:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let that = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true
+    })
+    wx.request({
+      url: 'http://app.uyu.com:7100/store/v1/api/obstacle_scheme/list',
+      method: 'GET',
+      data: {
+        os: 'xiaochengxu',
+        obstacle_id: '1',
+        app_version: '1.0.0'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': wx.getStorageSync("sessionid")
+      },
+      success(res) {
+        console.log(res.data);
+        if (res.data.respcd == '0000') {
+          that.setData({
+            schemes: res.data.data.schemes,
+          })
+        }
+      },
+      complete() {
+        console.log("complete");
+        wx.hideLoading();
+      }
+    });
   },
 
   /**

@@ -20,7 +20,6 @@
   margin-top: 20rpx;
   width: 60rpx;
   height: 60rpx;
-  background-color: red;
 }
 .presc_wrap{
   margin: 0 auto;
@@ -156,9 +155,15 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   height: 180rpx;
   text-align: center;
 }
+.row_down view{
+  text-align: center;
+}
 .row_up{
   width: 80rpx;
   height: 180rpx;
+  text-align: center;
+}
+.row_up view{
   text-align: center;
 }
 .row_del{
@@ -166,6 +171,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 80rpx;
   height: 180rpx;
   text-align: center;
+}
+.row_del view{
+  text-align: center;
+}
+.row_img{
+  margin-top: 30rpx;
+  width: 50rpx;
+  height: 50rpx
 }
 
 
@@ -178,6 +191,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   left: 36rpx;
   right: 36rpx;
   text-align: center;
+  background: white;
 }
 .btn_wrap view{
   margin: 0 auto;

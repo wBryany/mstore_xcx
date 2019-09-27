@@ -117,10 +117,10 @@ this.data.listen_input_account=this.data.mInputaccount;
   },
   login: function(e) {
 
-    wx.navigateTo({
-      url: '/pages/prescription_setting/index',
-    })
-    return;
+    // wx.navigateTo({
+    //   url: '/pages/prescription_setting/index',
+    // })
+    // return;
     wx.showLoading({
       title: '请稍后...',
       mask: true
