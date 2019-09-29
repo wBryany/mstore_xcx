@@ -70,7 +70,7 @@ Page({
     let ssid_arrays = sess_id.split(";")[0].split("=");
     console.log("ssid_arrays:" + ssid_arrays);
     wx.request({
-      url: 'http://app.uyu.com/optometrist/api/v1/uyuuser?tk=' + ssid_arrays[1],
+      url: 'https://app.uyu.com/optometrist/api/v1/uyuuser?tk=' + ssid_arrays[1],
       method: 'POST',
       data: {
         sex: this.select_sex_value,

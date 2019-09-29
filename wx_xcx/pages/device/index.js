@@ -1,4 +1,6 @@
 // pages/device/index.js
+
+const app = getApp()
 Page({
 
   /**
@@ -70,7 +72,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'http://app.uyu.com:12000/store/v1/api/device_list',
+      url: app.url_config.HTTP_URL2 +'/store/v1/api/device_list',
       method: 'GET',
       data: {
         device_type: _this.data.device_type,

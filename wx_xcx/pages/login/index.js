@@ -112,7 +112,7 @@ Page({
     console.log(password);
     console.log(MD5Util.hexMD5(password));
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/login',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/login',
       method: 'POST',
       data: {
         mobile: account,

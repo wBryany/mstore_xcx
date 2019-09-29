@@ -66,7 +66,7 @@ Page({
     wx.onLoad;
     let u_id = wx.getStorageSync("userid");
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/load_consumer_detail',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/load_consumer_detail',
       method: 'POST',
       data: {
         mobile: this.searchtext,
@@ -119,7 +119,7 @@ Page({
     // console.log("u_id:" + u_id);
     // console.log("cookie:" + wx.getStorageSync("sessionid"));
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/store_consumer_list',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_consumer_list',
       method: 'GET',
       data: {
         se_userid: u_id,

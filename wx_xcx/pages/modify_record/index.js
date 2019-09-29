@@ -1,4 +1,6 @@
 // pages/modify_record/index.js
+
+const app = getApp()
 Page({
 
   /**
@@ -35,7 +37,7 @@ getdata(){
   // console.log("u_id:" + u_id);
   // console.log("cookie:" + wx.getStorageSync("sessionid"));
   wx.request({
-    url: 'http://app.uyu.com:12000/store/v1/api/modify_record',
+    url: app.url_config.HTTP_URL2 + '/store/v1/api/modify_record',
     method: 'GET',
     data: {
       userid: u_id,

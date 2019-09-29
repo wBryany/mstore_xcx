@@ -1,4 +1,6 @@
 // pages/modify_record/index.js
+
+const app = getApp()
 Page({
 
   /**
@@ -36,7 +38,7 @@ getdata(){
   })
 
   wx.request({
-    url: 'http://app.uyu.com:12000/store/v1/api/modify_record',
+    url: app.url_config.HTTP_URL2+'/store/v1/api/modify_record',
     method: 'GET',
     data: {
       userid: _this.data.userInfo.userid,

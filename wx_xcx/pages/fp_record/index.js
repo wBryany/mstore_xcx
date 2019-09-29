@@ -1,4 +1,5 @@
 // pages/fp_record/index.js
+const app = getApp()
 Page({
 
   /**
@@ -82,7 +83,7 @@ Page({
     // console.log("u_id:" + u_id);
     // console.log("cookie:" + wx.getStorageSync("sessionid"));
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/store_allocate_list',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_allocate_list',
       method: 'GET',
       data: {
         page: _this.data.page,

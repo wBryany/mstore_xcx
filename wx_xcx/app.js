@@ -35,6 +35,11 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+
+  url_config:{
+    HTTP_URL1:'http://app.uyu.com:7100',
+    HTTP_URL2: 'http://app.uyu.com:12000',
   }
 
   
