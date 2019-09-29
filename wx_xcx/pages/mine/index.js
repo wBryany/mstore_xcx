@@ -32,15 +32,16 @@ Page({
     ],
   },
   onShow: function () {
-
+    console.log("onShow");
+    this.getinfo();
   },
   //事件处理函数
   onLoad: function() {
    
   },
   onReady: function() {
-    console.log("onReady");
-    this.getinfo();
+    // console.log("onReady");
+    // this.getinfo();
 
   },
 
