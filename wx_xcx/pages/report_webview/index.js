@@ -7,14 +7,22 @@ Page({
    */
   data: {
 
-    url: app.url_config.HTTP_URL1+'store/v1/page/new_train_head.html?userid=1059935'
+    url: '',
+    myuserid:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _this = this;
+    console.log(options);
+    this.data.myuserid = options.userid;
 
+    this.data.url = app.url_config.HTTP_URL1 + '/store/v1/page/new_train_head.html?userid=' + this.data.myuserid;
+    this.setData({
+      url: _this.data.url
+    });
   },
 
   /**

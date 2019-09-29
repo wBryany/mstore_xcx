@@ -38,8 +38,8 @@ App({
   },
 
   url_config:{
-    HTTP_URL1:'http://app.uyu.com:7100',
-    HTTP_URL2: 'http://app.uyu.com:12000',
+    HTTP_URL1:'https://api.uyu.com',
+    HTTP_URL2: 'https://api.uyu.com',
   }
 
   

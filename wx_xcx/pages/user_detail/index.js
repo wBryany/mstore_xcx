@@ -23,9 +23,9 @@ Page({
   onLoad: function(option) {
 
     console.log(option.info);
-    this.userInfo=JSON.parse(option.info);
+    this.data.userInfo=JSON.parse(option.info);
     wx.setNavigationBarTitle({
-      title: this.userInfo.nick_name,
+      title: this.data.userInfo.nick_name,
     })
 
   },
@@ -46,12 +46,13 @@ Page({
 
     let _this=this;
     wx.navigateTo({
-      url: '/pages/alter_record/index?userinfo=' + JSON.stringify(_this.userInfo),
+      url: '/pages/alter_record/index?userinfo=' + JSON.stringify(_this.data.userInfo),
     })
   },
   goTrainReport: function() {
+    let _this = this;
     wx.navigateTo({
-      url: '/pages/prescription_record/index',
+      url: '/pages/prescription_record/index?userid=' + _this.data.userInfo.userid,
     })
   },
   goAssignTrainTimes: function() {

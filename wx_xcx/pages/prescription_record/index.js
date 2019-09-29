@@ -91,6 +91,7 @@ var startPos = null;
 var scrollTop = 0;
 Page({
   data: {
+    myuserid:'',
     ec: {
       lazyLoad: true
     },
@@ -370,7 +371,7 @@ Page({
     wx.scanCode({
       success: (res) => {
         console.log(res);
-        let newStr = res.result.replace('http://app.uyu.com/v1/wx/t/', 'https://api.uyu.com/v1/wp/t/');
+        let newStr = res.result.replace('https://api.uyu.com/v1/wx/t/', 'https://api.uyu.com/v1/wp/t/');
         //线上
         // let newStr = res.result.replace('http://weixin.zmuchi.cn/v1/wx/t/','http://weiapp.zmuchi.cn/v1/wp/t/');
         //测试
@@ -378,7 +379,7 @@ Page({
         wx.request({
           url: newStr, //
           data: {
-            userid: app.globalData.userId
+            userid: that.data.myuserid
           },
           header: {
             'content-type': 'application/json' // 默认值
@@ -416,6 +417,7 @@ Page({
       }
     })
   },
+
   onReady: function() {
     // 获取组件
     // console.log('ready');
@@ -494,8 +496,8 @@ Page({
         data: {
 
     
-          // userid: app.globalData.userId,
-          userid:1059935,
+          userid: that.data.myuserid,
+          // userid:1059935,
           datatype: that.data.scoreType
         },
         header: {
@@ -583,7 +585,7 @@ Page({
   },
   toreportPage(){
     wx.navigateTo({
-      url: '../report_webview/index'
+      url: '../report_webview/index?userid=' + this.data.myuserid
     })
   },
   /*
@@ -691,7 +693,18 @@ Page({
     // })
   },
   onLoad: function(e) {
+
+
+
+
+
     var that = this;
+    console.log(e);
+    this.data.myuserid = e.userid;
+
+
+
+
     wx.showNavigationBarLoading();
     wx.showLoading({
       title: '数据加载中',
@@ -730,8 +743,8 @@ Page({
     wx.request({
       url: 'https://api.uyu.com/v1/wp/user_record',
       data: {
-        // userid: app.globalData.userId,
-        userid:1059935,
+        userid: that.data.myuserid,
+        // userid:1059935,
         datatype: scoreType
       },
       header: {

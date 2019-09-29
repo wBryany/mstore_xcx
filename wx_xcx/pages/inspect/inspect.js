@@ -260,7 +260,7 @@ Page({
         wx.scanCode({
                 success: (res) => {
                 // console.log(res.result);
-                let newStr = res.result.replace('http://app.uyu.com/v1/wx/t/','https://api.uyu.com/v1/wp/t/');
+                  let newStr = res.result.replace('https://api.uyu.com/v1/wx/t/','https://api.uyu.com/v1/wp/t/');
                 //线上
                 // let newStr = res.result.replace('http://weixin.zmuchi.cn/v1/wx/t/','http://weiapp.zmuchi.cn/v1/wp/t/');
                 //测试
