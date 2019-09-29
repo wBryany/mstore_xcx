@@ -33,6 +33,9 @@ App({
       }
     })
   },
+  savePrescriptionRequest: function(schemes){
+    console.log(schemes);
+  },
   globalData: {
     userInfo: null
   },
