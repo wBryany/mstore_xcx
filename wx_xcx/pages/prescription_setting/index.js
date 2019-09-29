@@ -2042,11 +2042,11 @@ Page({
     } else if (this.data.item_select_name == 'Advance') {
       this.calculateAdvanceResult();
     }
-    // wx.navigateBack({
-    //   success: function () {
-    //     console.log("点击确定")
-    //   }
-    // })
+    wx.navigateBack({
+      success: function () {
+        console.log("点击确定")
+      }
+    })
   },
   // 翻转拍左眼训练 FlipBeat_d
   calculateFlipBeat_dResult: function () {
