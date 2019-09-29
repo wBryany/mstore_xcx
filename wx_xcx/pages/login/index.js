@@ -155,6 +155,11 @@ Page({
             url: '../login/index'
           })
 
+        }else{
+          wx.showToast({
+            title: res.data.resperr,
+            icon: 'none'
+          })
         }
       },
 
