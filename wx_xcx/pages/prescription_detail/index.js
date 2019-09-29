@@ -1033,7 +1033,7 @@ Page({
       }
       let sc = this.data.schemes[i];
       prescItem.item_id = sc.item_id;
-      prescItem.params = sc.params;
+      prescItem.params = JSON.parse(sc.params);
       console.log(prescItem);
       paramsArray.push(prescItem);
     }
@@ -1044,7 +1044,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: 'http://app.uyu.com:12000/store/v2/api/presc_info',
+      url: currentApp.url_config.HTTP_URL1 + '/store/v2/api/presc_info',
       method: 'POST',
       data: {
         prescriptions: JSON.stringify(paramsArray),
