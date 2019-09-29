@@ -379,7 +379,7 @@ Page({
         wx.request({
           url: newStr, //
           data: {
-            userid: that.data.myuserid
+            userid: app.globalData.traincenter_userid 
           },
           header: {
             'content-type': 'application/json' // 默认值
@@ -496,7 +496,7 @@ Page({
         data: {
 
     
-          userid: that.data.myuserid,
+          userid: app.globalData.traincenter_userid ,
           // userid:1059935,
           datatype: that.data.scoreType
         },
@@ -701,6 +701,7 @@ Page({
     var that = this;
     console.log(e);
     this.data.myuserid = e.userid;
+    app.globalData.traincenter_userid = this.data.myuserid ;
 
 
 
@@ -731,6 +732,7 @@ Page({
    * */
   selectType: function(e) {
     console.log(e)
+    console.log("userid:" + app.globalData.traincenter_userid)
     var that = this;
     that.setData({
       scoreType: e.currentTarget.dataset.type
@@ -743,7 +745,7 @@ Page({
     wx.request({
       url: 'https://api.uyu.com/v1/wp/user_record',
       data: {
-        userid: that.data.myuserid,
+        userid: app.globalData.traincenter_userid ,
         // userid:1059935,
         datatype: scoreType
       },

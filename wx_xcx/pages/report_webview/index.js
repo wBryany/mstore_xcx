@@ -51,7 +51,8 @@ Page({
    */
   onUnload: function () {
     wx.redirectTo({
-      url:'/pages/prescription_record/index'
+      url: '/pages/prescription_record/index?userid=' + this.data.myuserid,
+      // url:'/pages/prescription_record/index'
     })
   },
 
