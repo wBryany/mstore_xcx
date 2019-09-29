@@ -3,7 +3,6 @@
 // var windowWidth = null;
 // var ratio = null;
 import * as echarts from '../../ec-canvas/echarts';
-
 function initChar(chart) {
   var option = {
     tooltip: {

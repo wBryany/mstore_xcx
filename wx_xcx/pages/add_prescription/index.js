@@ -1,4 +1,5 @@
 // pages/add_ prescription/index.js
+const app = getApp()
 Page({
 
   /**
@@ -83,7 +84,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/obstacle_type/list',
+      url: app.url_config.HTTP_URL1+ '/store/v1/api/obstacle_type/list',
       method: 'GET',
       data: {
         os: 'xiaochengxu',

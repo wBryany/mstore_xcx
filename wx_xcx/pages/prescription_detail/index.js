@@ -739,7 +739,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'http://app.uyu.com:12000/store/v1/api/obstacle_scheme/list',
+      url: currentApp.url_config.HTTP_URL2 + '/store/v1/api/obstacle_scheme/list',
       method: 'GET',
       data: {
         os: 'xiaochengxu',

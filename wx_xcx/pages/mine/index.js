@@ -56,7 +56,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/store_info',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_info',
       method: 'GET',
       data: {
         se_userid: u_id,

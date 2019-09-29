@@ -1,4 +1,5 @@
 // pages/report_webview/index.js
+const app = getApp()
 Page({
 
   /**
@@ -6,7 +7,7 @@ Page({
    */
   data: {
 
-    url:'http://app.uyu.com:7100/store/v1/page/new_train_head.html?userid=1059935'
+    url: app.url_config.HTTP_URL1+'store/v1/page/new_train_head.html?userid=1059935'
   },
 
   /**

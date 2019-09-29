@@ -50,7 +50,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/load_consumer_detail',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/load_consumer_detail',
       method: 'POST',
       data: {
         mobile: this.searchtext,
@@ -113,7 +113,7 @@ Page({
       mask: true
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/store_consumer_list',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_consumer_list',
       method: 'GET',
       data: {
         se_userid: u_id,

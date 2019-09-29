@@ -1,4 +1,5 @@
 // pages/sgs_page/index.js
+const app = getApp()
 Page({
 
   /**
@@ -82,7 +83,7 @@ Page({
     // console.log("u_id:" + u_id);
     // console.log("cookie:" + wx.getStorageSync("sessionid"));
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/eyesight_list',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/eyesight_list',
       method: 'GET',
       data: {
         page: _this.data.page,
@@ -194,7 +195,7 @@ Page({
     })
     let u_id = wx.getStorageSync("userid");
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/eyesight_unbind',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/eyesight_unbind',
       method: 'POST',
       data: {
         se_userid: u_id,

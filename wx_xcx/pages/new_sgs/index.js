@@ -1,4 +1,5 @@
 // pages/new_sgs/index.js
+const app = getApp()
 Page({
 
   /**
@@ -88,7 +89,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/eyesight',
+      url: app.url_config.HTTP_URL1 +'/store/v1/api/eyesight',
       method: 'GET',
       data: {
         phone_num: _this.searchtext,
@@ -157,7 +158,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: 'http://app.uyu.com:7100/store/v1/api/eyesight',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/eyesight',
       method: 'POST',
       data: {
         userid: _this.data.mydata.id,
