@@ -22,29 +22,30 @@
   </view>
 
   <view class="row_wrap" wx:for="{{schemes}}" wx:for-index="idx" wx:for-item="item" wx:key="{{item.item_name}}" data-bindex="{{idx}}" data-selectitem="{{item}}">
-    <view class="row_head">
+    <view class="row_head" data-schemeindex="{{idx}}" data-schemeitem="{{item}}" bindtap="rowHeadAction">
       <view class="train_name">{{item.item_name}}</view>
-      <view class="train_detial">BI/BO:BI</view>
-      <view class="train_times">次数(3)</view>
+      <view class="train_detial" wx:for="{{item.presc_item_desc}}" wx:for-index="inidx" wx:for-item="initem" wx:key="{{initem}}">{{initem}}</view>
+      <view class="train_times">次数({{item.count}})</view>
     </view>
     <view class="row_down">
-      <view>
-        <image class="row_img" src="{{icon_down_src}}"></image>
+      <view data-schemeindex="{{idx}}" data-schemeitem="{{item}}" bindtap="downAction">
+        <image  class="row_img" src="{{icon_down_src}}"></image>
       </view>
     </view>
     <view class="row_up">
-      <view>
+      <view data-schemeindex="{{idx}}" data-schemeitem="{{item}}" bindtap="upAction">
         <image class="row_img" src="{{icon_up_src}}"></image>
       </view>
     </view>
     <view class="row_del">
-      <view>
+      <view data-schemeindex="{{idx}}" data-schemeitem="{{item}}" bindtap="deleteAction">
         <image class="row_img" src="{{icon_del_src}}"></image>
       </view>
     </view>
   </view>
   <view style="width: 100%; height: 240rpx"></view>
-  <view class="btn_wrap" bindtap="goPrescSetting">
-    <view><text class="btn_add">+</text><text class="btn_content">添加方案</text></view>
+  <view class="btn_wrap" >
+    <view class="btn_save_wrap" bindtap="prescSaveRequest">保存</view>
+    <view class="btn_add_wrap" bindtap="goPrescSetting"><text class="btn_add">+</text><text class="btn_content">添加方案</text></view>
   </view>
 </view>

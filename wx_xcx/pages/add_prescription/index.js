@@ -69,6 +69,10 @@ Page({
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     this.data.selected_item=this.data.mydata[e.detail.value-1];
+    this.setData({
+      selected_item: this.data.mydata[e.detail.value - 1]
+    })
+    console.log(this.data.selected_item);
     
   },
   getdataList() {
@@ -122,8 +126,21 @@ Page({
     });
   },
   goPrescDetail: function() {
-    wx.navigateTo({
-      url: '/pages/prescription_detail/index',
-    })
+    // wx.navigateTo({
+    //   url: '../user_detail/index?info=' + JSON.stringify(this.mydata[e.currentTarget.dataset.index])
+    // })
+    if (this.data.selected_item){
+      wx.navigateTo({
+        url: '/pages/prescription_detail/index?presc_id=' + this.data.selected_item.id,
+      })
+    }else{
+      wx.showToast({
+        icon:'none',
+        title: '请选择障碍类型',
+      })
+    }
+    
+
+    
   }
 })

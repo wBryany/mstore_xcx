@@ -1,6 +1,6 @@
 //index.js
 //获取应用实例
-const app = getApp()
+let currentApp = getApp()
 
 Page({
   data: {
@@ -23,10 +23,16 @@ Page({
   onLoad: function(option) {
 
     console.log(option.info);
-    this.userInfo=JSON.parse(option.info);
-    wx.setNavigationBarTitle({
-      title: this.userInfo.nick_name,
+    this.setData({
+      userInfo: JSON.parse(option.info)
     })
+    
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@")
+    console.log(this.data.userInfo);
+    wx.setNavigationBarTitle({
+      title: this.data.userInfo.nick_name,
+    })
+    currentApp.globalData.selectedUserInfo = this.data.userInfo;
 
   },
   goCheckReport(){

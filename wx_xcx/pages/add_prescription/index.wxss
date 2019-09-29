@@ -77,13 +77,14 @@ radio .wx-radio-input.wx-radio-input-checked::before{
 
 .btn_wrap{
   position: fixed;
-  bottom: 40rpx;
-  left: 36rpx;
-  right: 36rpx;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  background-color: white;
 
 }
 .btn_wrap button{
-  margin: 0 auto;
+  margin: 20rpx 36rpx 40rpx 36rpx;
   height: 88rpx;
   background-color: #4990E2;
   color: white;

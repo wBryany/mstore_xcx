@@ -9,7 +9,7 @@ Page({
   data: {
     train_items: [
       {
-        name: "反转拍双眼训练",
+        name: "调节双眼训练",
         checked: true,
         eye:"B",
         content: {
@@ -324,7 +324,7 @@ Page({
         }
       },
       {
-        name: "反转拍左眼训练",
+        name: "调节左眼训练",
         checked: false,
         eye: "L",
         content: {
@@ -639,7 +639,7 @@ Page({
         }
       },
       {
-        name: "反转拍右眼训练",
+        name: "调节右眼训练",
         checked: false,
         eye: "R",
         content: {
@@ -954,7 +954,7 @@ Page({
         }
       },
       {
-        name: "红绿固定初级训练",
+        name: "静态融像初级训练",
         checked: false,
         content: {
           "name": "RedGreenFixed_j",
@@ -982,7 +982,7 @@ Page({
         }
       },
       {
-        name: "红绿固定高级训练",
+        name: "静态融像高级训练",
         checked: false,
         content: {
           "name": "RedGreenFixed_h",
@@ -1014,7 +1014,7 @@ Page({
         }
       },
       {
-        name: "红绿可变初级训练",
+        name: "动态融像初级训练",
         checked: false,
         content: {
           "name": "RgVariable_j",
@@ -1072,7 +1072,7 @@ Page({
         }
       },
       {
-        name: "红绿可变高级训练",
+        name: "动态融像高级训练",
         checked: false,
         content: {
           "name": "RgVariable_h",
@@ -1134,7 +1134,7 @@ Page({
         }
       },
       {
-        name: "裂隙尺训练",
+        name: "近融像训练",
         checked: false,
         content: {
           "name": "SlitRuler",
@@ -1162,7 +1162,7 @@ Page({
         }
       },
       {
-        name: "立体镜初级训练",
+        name: "远融像初级训练",
         checked: false,
         content: {
           "name": "Stereoscopic_j",
@@ -1190,7 +1190,7 @@ Page({
         }
       },
       {
-        name: "立体镜中级训练",
+        name: "远融像中级训练",
         checked: false,
         content: {
           "name": "Stereoscopic_m",
@@ -1218,7 +1218,7 @@ Page({
         }
       },
       {
-        name: "立体镜高级训练",
+        name: "远融像高级训练",
         checked: false,
         content: {
           "name": "Stereoscopic_h",
@@ -1382,7 +1382,7 @@ Page({
         }
       },
       {
-        name: "红绿阅读初级训练",
+        name: "脱抑制初级训练",
         checked: false,
         content: {
           "name": "RgReading_j",
@@ -1392,7 +1392,7 @@ Page({
         }
       },
       {
-        name: "红绿阅读中级训练",
+        name: "脱抑制中级训练",
         checked: false,
         content: {
           "name": "RgReading_m",
@@ -1532,7 +1532,7 @@ Page({
         }
       },
       {
-        name: "推进训练",
+        name: "三联动训练",
         checked: false,
         content: {
           "name": "Advance",
@@ -1550,7 +1550,7 @@ Page({
     item_select: {},
     item_train_repeat_times: 1, //选择的项目重复的次数
 
-    currentUserid: 30012,
+    currentUserid: ''
   },
 
   /**
@@ -1559,17 +1559,81 @@ Page({
   onLoad: function (options) {
     // 初始化 选择 训练的第一项
     this.setData({
-      item_select_index: 0,
-      item_select_name: "FlipBeat_d",
-    })
-    let defaultSelTrainItem = this.data.train_items[0];
-    // 字典拷贝 初始化选择项目
-    let selTrainItemStr = JSON.stringify(defaultSelTrainItem);
-    let trainItem = JSON.parse(selTrainItemStr);
-    console.log(trainItem);
-    this.setData({
-      item_select: trainItem
-    })
+      currentUserid: currentApp.globalData.selectedUserInfo.userid
+    });
+    console.log("wwwwwwwwwww");
+    console.log(this.data.currentUserid);
+    let selectPrescItem = currentApp.globalData.selectPrescItem;
+    console.log("#####")
+    console.log(selectPrescItem);
+    if (selectPrescItem){
+      console.log("#####")
+      let name = selectPrescItem.name;
+      let train_item = {};
+      let index = 0;
+      for (let i = 0; i < this.data.train_items.length; i++){
+        let item = this.data.train_items[i];
+        if(name == item.content.name){
+          index = i;
+          console.log("index = " + index);
+          train_item = JSON.parse(JSON.stringify(item));
+          break;
+        }
+      }
+      console.log(train_item)
+      this.setData({
+        item_select_index: index,
+        item_select_name: name,
+        item_train_repeat_times: selectPrescItem.repeat_training_times
+      })
+      // 改造选中的item
+      for (let m = 0; m < train_item.content.params.length; m++){
+        let attriName = train_item.content.params[m].name;
+        console.log(attriName);
+        let selectValueItem = selectPrescItem[attriName];
+        console.log(selectValueItem);
+        if (selectValueItem){
+          train_item.content.params[m].select = selectValueItem;
+        }
+      }
+      train_item.checked = true;
+
+      // 清除旧的选择项目
+      let oldSelIndex = 0;
+      let oldSelKey = "train_items[" + oldSelIndex + "].checked";
+      this.setData({
+        [oldSelKey]: false
+      })
+
+      // 选择新的训练项目
+      // let index = e.currentTarget.dataset["bindex"];
+      // that.setData({
+      //   item_select_index: index
+      // })
+      let checked = !this.data.train_items[index].checked;
+      let key = "train_items[" + index + "].checked";
+      this.setData({
+        [key]: checked
+      })
+
+      this.setData({
+        item_select: train_item
+      })
+    }else{
+      this.setData({
+        item_select_index: 0,
+        item_select_name: "FlipBeat_d",
+      })
+      let defaultSelTrainItem = this.data.train_items[0];
+      // 字典拷贝 初始化选择项目
+      let selTrainItemStr = JSON.stringify(defaultSelTrainItem);
+      let trainItem = JSON.parse(selTrainItemStr);
+      console.log(trainItem);
+      this.setData({
+        item_select: trainItem
+      })
+    }
+    
   },
 
   /**
@@ -1978,11 +2042,11 @@ Page({
     } else if (this.data.item_select_name == 'Advance') {
       this.calculateAdvanceResult();
     }
-    wx.navigateBack({
-      success: function () {
-        console.log("点击确定")
-      }
-    })
+    // wx.navigateBack({
+    //   success: function () {
+    //     console.log("点击确定")
+    //   }
+    // })
   },
   // 翻转拍左眼训练 FlipBeat_d
   calculateFlipBeat_dResult: function () {
