@@ -182,3 +182,11 @@
   font-size: 28rpx;
   margin-top: 20rpx
 }
+
+.style_login_out{
+  position: absolute;
+  right: 0;
+  margin-right: 32rpx;
+  margin-top: 32rpx;
+  font-size: 32rpx;
+}

@@ -24,10 +24,11 @@ Page({
 
     console.log(option.info);
 
+let _this=this;
     this.setData({
       userInfo: JSON.parse(option.info)
     })
-    
+
     console.log("@@@@@@@@@@@@@@@@@@@@@@@")
     console.log(this.data.userInfo);
     wx.setNavigationBarTitle({
@@ -35,9 +36,14 @@ Page({
     })
     currentApp.globalData.selectedUserInfo = this.data.userInfo;
 
+    this.setData({
+      mydata: _this.data.userInfo
+    });
+    
+
   },
-  goCheckReport(){
-  
+  goCheckReport() {
+
     wx.navigateTo({
       url: '/pages/inspect/inspect',
     })
@@ -51,7 +57,7 @@ Page({
 
 
 
-    let _this=this;
+    let _this = this;
     wx.navigateTo({
       url: '/pages/alter_record/index?userinfo=' + JSON.stringify(_this.data.userInfo),
     })
@@ -67,6 +73,45 @@ Page({
       url: '/pages/assign_train_time/index',
     })
   },
+
+  scanHandle: function () {
+    let _this=this;
+    wx.scanCode({
+      success: (res) => {
+        console.log(res);
+        let newStr = res.result.replace('http://app.uyu.com/v1/wx/t/', 'https://api.uyu.com/v1/wp/t/');
+        //线上
+        // let newStr = res.result.replace('http://weixin.zmuchi.cn/v1/wx/t/','http://weiapp.zmuchi.cn/v1/wp/t/');
+        //测试
+        console.log(newStr);
+        wx.request({
+          url: newStr, //
+          data: {
+            userid: _this.data.userInfo.userid
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success: function (res) {
+            // console.log(res.data);
+            if (res.data.respcd == '0000') {
+              wx.showToast({
+                title: '开始训练',
+                icon: 'success',
+                duration: 2000
+              })
+            } else {
+              wx.showToast({
+                title: res.data.resperr,
+                icon: 'none',
+                duration: 2000
+              });
+            }
+          }
+        })
+      }
+    })
+  },
   tosearch(e) {
     let _this = this;
     console.log("tosearch");
@@ -74,7 +119,7 @@ Page({
     wx.onLoad;
     let u_id = wx.getStorageSync("userid");
     wx.request({
-      url: app.url_config.HTTP_URL1 +'/store/v1/api/load_consumer_detail',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/load_consumer_detail',
       method: 'POST',
       data: {
         mobile: this.searchtext,
@@ -127,7 +172,7 @@ Page({
     // console.log("u_id:" + u_id);
     // console.log("cookie:" + wx.getStorageSync("sessionid"));
     wx.request({
-      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_consumer_list',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/store_consumer_list',
       method: 'GET',
       data: {
         se_userid: u_id,

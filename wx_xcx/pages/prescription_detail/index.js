@@ -12,16 +12,16 @@ Page({
     icon_down_src: "/assets/img/icon_down.png",
     icon_up_src: "/assets/img/icon_up.png",
     prescription: {
-      Advance:{
+      Advance: {
         "name": "推进训练",
         "name_en": "Advance",
       },
-      PhysiologicDiplopia:{
+      PhysiologicDiplopia: {
         "name": "生理性复视训练",
         "name_en": "PhysiologicDiplopia",
         "stick_position": {
           "name_cn": "引导棒位置",
-          "value":{
+          "value": {
             "10": {
               "text": "10",
               "val": "10"
@@ -45,17 +45,17 @@ Page({
           }
         }
       },
-      RgReading_m:{
+      RgReading_m: {
         "name": "红绿阅读中级训练",
         "name_en": "RgReading_m",
-        "fontLevel":{
+        "fontLevel": {
           "name_cn": "字体大小等级",
-          "value":{
+          "value": {
             "1": {
               "text": "1",
               "val": "1"
             },
-            "2":{
+            "2": {
               "text": "2",
               "val": "2"
             },
@@ -342,7 +342,7 @@ Page({
         },
         "move_level": {
           "name_cn": "移动等级",
-          "value":{
+          "value": {
             "1": {
               "text": "1",
               "val": "1"
@@ -536,7 +536,7 @@ Page({
             }
           }
         },
-        "l_loop_negative_num":{
+        "l_loop_negative_num": {
           "name_cn": "左眼负片次数",
           "value": {
             "1": {
@@ -715,23 +715,31 @@ Page({
             }
           }
         },
-        
+
       }
     },
 
-    
-    
+
+
     currentModel: "",
     originSchemes: [],
     modifyIndex: 0,
     modifyItem: {},
-    schemes:[],
+    schemes: [],
+    total_train_time: 0,
+    tj_train_time: 0,
+    js_train_time: 0,
+    other_train_time: 0,
+
+
+
   },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     let that = this;
     console.log(options);
     wx.showLoading({
@@ -771,7 +779,7 @@ Page({
           //   }
           //   console.log("#############################")
           //   let prescAllKeys = Object.keys(params.presc);
-            
+
           //   let index = prescAllKeys.indexOf("repeat_training_times")
           //   prescAllKeys.splice(index, 1);
           //   item.presc_item_keys = prescAllKeys;
@@ -804,7 +812,7 @@ Page({
       }
     });
   },
-  handlePrescData: function (schemesTemp) {
+  handlePrescData: function(schemesTemp) {
     let that = this;
     let schemesTempArray = [];
     // let schemesTemp = res.data.data.schemes;
@@ -842,30 +850,159 @@ Page({
       item.presc_item_desc = descArray;
       schemesTempArray.push(item);
     }
+
+    // that.data.schemes = schemesTempArray
     that.setData({
       schemes: schemesTempArray,
     })
+
+    that.calculateTime();
+
+
+  },
+  calculateTime() {
+
+
+    console.log("#######------>");
+    console.log(this.data.schemes);
+    console.log("#######------>");
+
+    /**
+     * 调节项目包含调节右眼、调节左眼、调节双眼；聚散项目包括远融像初、中、高级；近融像；动态融像初、高级；静态融像初、高级；生理性复视和三联动
+     * 
+     * 项目itemid:
+     * 11-调节双眼训练,12-调节左眼训练,13-调节右眼训练,14-静态融像初级训练,15-静态融像高级训练,16-动态融像初级训练,17-动态融像高级训练,18-近融像训练,19-远融像初级训练,20-远融像中级训练,21-远融像高级训练,22-扫视训练,23-追随训练,24-脱抑制初级训练,25-脱抑制中级训练,26-生理性复视训练,27-三联动训练,
+     */
+
+
+
+
+
+
+    this.data.total_train_time = 0;
+    this.data.tj_train_time = 0;
+    this.data.js_train_time = 0;
+    this.data.other_train_time = 0;
+    for (let i = 0; i < this.data.schemes.length; i++) {
+      let item_data = this.data.schemes[i];
+
+      let itemid = parseInt(item_data.item_id);
+      switch (itemid) {
+        case 11:
+
+          this.data.total_train_time += item_data.count * 5;
+          this.data.tj_train_time += item_data.count * 5;
+          break;
+        case 12:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.tj_train_time += item_data.count * 5;
+          break;
+        case 13:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.tj_train_time += item_data.count * 5;
+          break;
+        case 14:
+          this.data.total_train_time += item_data.count * 5;
+
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 15:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 16:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 17:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 18:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 19:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 20:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 21:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 22:
+          this.data.total_train_time += item_data.count * 2;
+          break;
+        case 23:
+          this.data.total_train_time += item_data.count * 5;
+          break;
+        case 24:
+          this.data.total_train_time += item_data.count * 5;
+          break;
+        case 25:
+          this.data.total_train_time += item_data.count * 5;
+          break;
+        case 26:
+          this.data.total_train_time += item_data.count * 5;
+          this.data.js_train_time += item_data.count * 5;
+          break;
+        case 27:
+          this.data.total_train_time += item_data.count * 3;
+          this.data.js_train_time += item_data.count * 3;
+          break;
+        default:
+          break;
+      }
+
+
+
+    }
+
+
+    this.data.other_train_time = this.data.total_train_time - this.data.tj_train_time - this.data.js_train_time;
+
+    this.setData({
+      total_train_time: this.data.total_train_time,
+      tj_train_time: this.data.tj_train_time,
+      js_train_time: this.data.js_train_time,
+      other_train_time: this.data.other_train_time,
+    })
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     console.log("$$$$$$$$$$$$$$$$$$$$$")
-    if(this.data.currentModel == 'add'){
+    if (this.data.currentModel == 'add') {
       let prescTemp = currentApp.globalData.tempAddPresciption;
       let name = prescTemp.params.name;
       let info = this.data.prescription[name];
+      if (name.indexOf("FlipBeat") >= 0) {
+        info = this.data.prescription["FlipBeat"];
+        if (name.indexOf("FlipBeat_d") >= 0) {
+          info.name = "调节双眼训练";
+        } else if (name.indexOf("FlipBeat_l") >= 0) {
+          info.name = "调节左眼训练";
+        } else if (name.indexOf("FlipBeat_r") >= 0) {
+          info.name = "调节右眼训练";
+        }
+      }
       let createPrescItem = {
-        count: prescTemp.params.presc.repeat_training_times, 
-        obstacle_id: 1, 
-        item_name: info.name, 
+        count: prescTemp.params.presc.repeat_training_times,
+        obstacle_id: 1,
+        item_name: info.name,
         order_num: 2,
         item_id: prescTemp.item_id,
         params: JSON.stringify(prescTemp.params)
@@ -873,7 +1010,7 @@ Page({
       let originScm = JSON.parse(JSON.stringify(this.data.originSchemes));
       originScm.push(createPrescItem);
       this.handlePrescData(originScm);
-    } else if (this.data.currentModel == 'modify'){
+    } else if (this.data.currentModel == 'modify') {
       let prescTemp = currentApp.globalData.tempAddPresciption;
       let originScm = JSON.parse(JSON.stringify(this.data.originSchemes));
       let mIndex = this.data.modifyIndex;
@@ -886,43 +1023,43 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  prescAllKeys: function (item) {
-    let allKeys =  Object.keys(item.params.presc);
+  prescAllKeys: function(item) {
+    let allKeys = Object.keys(item.params.presc);
     console.log(allKeys);
     return allKeys;
   },
-  goPrescSetting: function () {
+  goPrescSetting: function() {
     this.setData({
       currentModel: "add",
     })
@@ -930,26 +1067,26 @@ Page({
       url: '/pages/prescription_setting/index',
     })
   },
-  downAction: function (e) {
+  downAction: function(e) {
     console.log(e)
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     console.log(schemeIndex);
-    if (schemeIndex == this.data.schemes.length - 1){
+    if (schemeIndex == this.data.schemes.length - 1) {
       wx.showToast({
         icon: 'none',
         title: '已经是最后一个训练项目',
       })
-    }else {
+    } else {
       let schemes = JSON.parse(JSON.stringify(this.data.schemes));
       let scItem = JSON.parse(JSON.stringify(schemes[schemeIndex]));
-      schemes.splice(schemeIndex, 1);//删除当前index对应的Item
+      schemes.splice(schemeIndex, 1); //删除当前index对应的Item
       schemes.splice(schemeIndex + 1, 0, scItem);
       this.setData({
         schemes: schemes
       })
     }
   },
-  upAction: function (e) {
+  upAction: function(e) {
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     console.log(schemeIndex);
     if (schemeIndex == 0) {
@@ -960,22 +1097,22 @@ Page({
     } else {
       let schemes = JSON.parse(JSON.stringify(this.data.schemes));
       let scItem = JSON.parse(JSON.stringify(schemes[schemeIndex]));
-      schemes.splice(schemeIndex, 1);//删除当前index对应的Item
+      schemes.splice(schemeIndex, 1); //删除当前index对应的Item
       schemes.splice(schemeIndex - 1, 0, scItem);
       this.setData({
         schemes: schemes
       })
     }
   },
-  deleteAction: function (e) {
+  deleteAction: function(e) {
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     let schemes = JSON.parse(JSON.stringify(this.data.schemes));
-    schemes.splice(schemeIndex, 1);//删除当前index对应的Item
+    schemes.splice(schemeIndex, 1); //删除当前index对应的Item
     this.setData({
       schemes: schemes
     })
   },
-  rowHeadAction: function (e) {
+  rowHeadAction: function(e) {
     console.log(e)
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     let scheme = e.currentTarget.dataset.schemeitem;
@@ -1003,7 +1140,7 @@ Page({
     let selectParam = {
       name: name
     }
-    for(let i = 0; i < keys.length; i++){
+    for (let i = 0; i < keys.length; i++) {
       let k = keys[i];
       let attrVal = params.presc[k] + "";
       console.log(attrVal);
@@ -1021,13 +1158,13 @@ Page({
       url: '/pages/prescription_setting/index',
     })
   },
-  prescSaveRequest: function(){
+  prescSaveRequest: function() {
     let that = this;
     console.log(this.data.schemes);
     let selectedCurUserid = currentApp.globalData.selectedUserInfo.userid;
     // if(this.data.schemes && this.data.schemes.length > 0){
     let paramsArray = new Array();
-    for (let i = 0; i < this.data.schemes.length; i++){
+    for (let i = 0; i < this.data.schemes.length; i++) {
       let prescItem = {
         userid: selectedCurUserid,
       }
@@ -1067,7 +1204,7 @@ Page({
             content: '保存成功',
             success(res) {
               if (res.confirm) {
-                
+
               } else if (res.cancel) {
 
               }

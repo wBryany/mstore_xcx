@@ -50,12 +50,23 @@ page {
   /* border-right: 1rpx solid #e4e4e4; */
 }
 
-.img_style{
+.img_style {
   width: 60rpx;
   height: 80rpx;
 }
-.text_style{
+
+.text_style {
   font-size: 32rpx;
   color: #4a90e2;
   margin-left: 40rpx;
+}
+
+.scan_code_btn {
+  color: white;
+  font-size: 32rpx;
+  background-color: #4a90e2;
+  border-radius: 10rpx;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 30rpx;
 }

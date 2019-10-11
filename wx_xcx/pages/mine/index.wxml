@@ -3,6 +3,8 @@
 
   <view class="bg_top">
 
+  <view class="style_login_out" bindtap="loginout">退出登录</view>
+
     <image class="mine_header" src="{{src}}"></image>
     <view class="username">{{name}}</view>
 

@@ -70,7 +70,7 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%;
   display: flex;
   background-color: #F5f5f5;
-  font-size: 28rpx;
+  font-size: 24rpx;
 }
 .title_wrap{
   flex: 1;
@@ -129,6 +129,8 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   width: 100%;
   font-size: 30rpx;
   border: 2rpx solid #F5f5f5;
+
+  margin-top: 20rpx;
 }
 .row_head{
   margin-top: 30rpx;

@@ -109,6 +109,14 @@ Page({
       }
     });
   },
+  loginout() {
+    wx.setStorageSync('sessionid', "");
+    wx.setStorageSync('userid', "");
+    app.globalData.userId = "";
+    wx.reLaunch({
+      url: '../login/index'
+    })
+  },
   //分配记录
   to_fp_record(){
     wx.navigateTo({

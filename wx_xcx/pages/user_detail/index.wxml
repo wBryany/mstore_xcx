@@ -43,4 +43,5 @@
     </view>
   </view>
 
+<button class="scan_code_btn"   catchtap="scanHandle">扫码(剩余{{userInfo.remain_times}}次)</button>
 </view>

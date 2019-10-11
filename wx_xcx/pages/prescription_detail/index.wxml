@@ -6,11 +6,11 @@
     <image src="{{src}}"></image>
   </view>
   <view class="stat_wrap">
-    <view class="stat_frist">共5项训练项目，预估时间：1小时</view>
+    <view class="stat_frist">共{{schemes.length}}项训练项目，预估时间：{{total_train_time}}分钟</view>
     <view class="stat_second">
-      <text>调节时长：10分钟</text>
-      <text>聚散时长：10分钟</text>
-      <text>其他时长：10分钟</text>
+      <text>调节时长：{{tj_train_time}}分钟</text>
+      <text >聚散时长：{{js_train_time}}分钟</text>
+      <text>其他时长：{{other_train_time}}分钟</text>
     </view>
   </view>
   
