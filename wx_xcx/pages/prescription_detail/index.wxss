@@ -231,3 +231,12 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   color: white;
   background-color: #4A90E2;
 }
+
+/* .presc_wrap{
+  margin: 0 auto;
+  width: 100%;
+  font-size: 32rpx;
+    margin-bottom: 200rpx;
+} */
+
+

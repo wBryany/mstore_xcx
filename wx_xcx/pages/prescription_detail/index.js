@@ -730,9 +730,11 @@ Page({
     tj_train_time: 0,
     js_train_time: 0,
     other_train_time: 0,
+    my_obstacle_id: 0,
+    selected_item: {},
+    mydata: [],
 
-
-
+    is_show_radio: false,
   },
 
 
@@ -741,76 +743,116 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
+    this.getradiodataList();
     console.log(options);
-    wx.showLoading({
-      title: '数据加载中...',
-      mask: true
-    })
-    wx.request({
-      url: currentApp.url_config.HTTP_URL2 + '/store/v1/api/obstacle_scheme/list',
-      method: 'GET',
-      data: {
-        os: 'xiaochengxu',
-        obstacle_id: options.presc_id,
-        app_version: '1.0.0'
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'cookie': wx.getStorageSync("sessionid")
-      },
-      success(res) {
-        console.log(res.data);
-        if (res.data.respcd == '0000') {
-          let schemesTempArray = [];
-          let schemesTemp = res.data.data.schemes;
-          that.setData({
-            originSchemes: schemesTemp
-          })
-          that.handlePrescData(schemesTemp);
-          // for (let i = 0; i < schemesTemp.length; i++){
-          //   let item = JSON.parse(JSON.stringify(schemesTemp[i]));
-          //   let params = JSON.parse(item.params);
-          //   console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-          //   console.log(params);
-          //   let name = params.name;
-          //   let prescription = that.data.prescription[name];
-          //   if (name.indexOf("FlipBeat") >= 0){
-          //     prescription = that.data.prescription["FlipBeat"];
-          //   }
-          //   console.log("#############################")
-          //   let prescAllKeys = Object.keys(params.presc);
 
-          //   let index = prescAllKeys.indexOf("repeat_training_times")
-          //   prescAllKeys.splice(index, 1);
-          //   item.presc_item_keys = prescAllKeys;
+    this.data.my_obstacle_id = options.obstacle_id;
 
-          //   let descArray = [];
-          //   console.log(prescAllKeys);
-          //   for(let m = 0; m < prescAllKeys.length; m++){
-          //     let key = prescAllKeys[m];
-          //     let valueObj = prescription[key];
-          //     console.log(valueObj);
-          //     let val = params.presc[key] + '';
-          //     console.log("val = " + val)
-          //     let valueItemObj = valueObj.value[val];
-          //     console.log(valueItemObj);
-          //     let name_cn = valueObj.name_cn;
-          //     descArray.push(name_cn + ": " + valueItemObj.text);
-          //     console.log("------------------------------------")
-          //   }
-          //   item.presc_item_desc = descArray;
-          //   schemesTempArray.push(item);
-          // }
-          // that.setData({
-          //   schemes: schemesTempArray,
-          // })
+    if (options.type == 1) {
+      //新增
+      wx.showLoading({
+        title: '数据加载中...',
+        mask: true
+      })
+      wx.request({
+        url: currentApp.url_config.HTTP_URL2 + '/store/v1/api/obstacle_scheme/list',
+        method: 'GET',
+        data: {
+          os: 'xiaochengxu',
+          obstacle_id: options.obstacle_id,
+          app_version: '1.0.0'
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': wx.getStorageSync("sessionid")
+        },
+        success(res) {
+          console.log(res.data);
+          if (res.data.respcd == '0000') {
+            let schemesTempArray = [];
+            let schemesTemp = res.data.data.schemes;
+            that.setData({
+              originSchemes: schemesTemp
+            })
+            that.handlePrescData(schemesTemp);
+            // for (let i = 0; i < schemesTemp.length; i++){
+            //   let item = JSON.parse(JSON.stringify(schemesTemp[i]));
+            //   let params = JSON.parse(item.params);
+            //   console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+            //   console.log(params);
+            //   let name = params.name;
+            //   let prescription = that.data.prescription[name];
+            //   if (name.indexOf("FlipBeat") >= 0){
+            //     prescription = that.data.prescription["FlipBeat"];
+            //   }
+            //   console.log("#############################")
+            //   let prescAllKeys = Object.keys(params.presc);
+
+            //   let index = prescAllKeys.indexOf("repeat_training_times")
+            //   prescAllKeys.splice(index, 1);
+            //   item.presc_item_keys = prescAllKeys;
+
+            //   let descArray = [];
+            //   console.log(prescAllKeys);
+            //   for(let m = 0; m < prescAllKeys.length; m++){
+            //     let key = prescAllKeys[m];
+            //     let valueObj = prescription[key];
+            //     console.log(valueObj);
+            //     let val = params.presc[key] + '';
+            //     console.log("val = " + val)
+            //     let valueItemObj = valueObj.value[val];
+            //     console.log(valueItemObj);
+            //     let name_cn = valueObj.name_cn;
+            //     descArray.push(name_cn + ": " + valueItemObj.text);
+            //     console.log("------------------------------------")
+            //   }
+            //   item.presc_item_desc = descArray;
+            //   schemesTempArray.push(item);
+            // }
+            // that.setData({
+            //   schemes: schemesTempArray,
+            // })
+          }
+        },
+        complete() {
+          console.log("complete");
+          wx.hideLoading();
         }
-      },
-      complete() {
-        console.log("complete");
-        wx.hideLoading();
+      });
+
+    } else if (options.type == 2) {
+      //修改
+
+      let data = JSON.parse(options.presc_info);
+
+      let temdata = [];
+      for (let i = 0; i < data.presc_items.length; i++) {
+        let item = JSON.parse(JSON.stringify(data.presc_items[i]));
+        let myprescitem = JSON.parse(JSON.stringify(data.items[i]));
+        item.item_name = myprescitem.name;
+        let params = JSON.parse(item.params);
+        let presc = params.presc;
+
+        presc.repeat_training_times = item.count;
+
+        // params={
+        //   'presc': params.presc,
+        //   'name': params.name,
+        // }
+        // params.presc = JSON.stringify(presc) ;
+        
+        item.params = JSON.stringify(params)  ;
+        temdata.push(item);
+
       }
-    });
+      that.setData({
+        originSchemes: temdata
+      })
+      that.handlePrescData(temdata);
+    }
+
+
+
   },
   handlePrescData: function(schemesTemp) {
     let that = this;
@@ -818,7 +860,7 @@ Page({
     // let schemesTemp = res.data.data.schemes;
     for (let i = 0; i < schemesTemp.length; i++) {
       let item = JSON.parse(JSON.stringify(schemesTemp[i]));
-      let params = JSON.parse(item.params);
+      let params = JSON.parse(JSON.stringify(item.params));
       console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
       console.log(params);
       let name = params.name;
@@ -831,6 +873,8 @@ Page({
 
       let index = prescAllKeys.indexOf("repeat_training_times")
       prescAllKeys.splice(index, 1);
+
+
       item.presc_item_keys = prescAllKeys;
 
       let descArray = [];
@@ -841,11 +885,13 @@ Page({
         console.log(valueObj);
         let val = params.presc[key] + '';
         console.log("val = " + val)
+
         let valueItemObj = valueObj.value[val];
         console.log(valueItemObj);
         let name_cn = valueObj.name_cn;
         descArray.push(name_cn + ": " + valueItemObj.text);
         console.log("------------------------------------")
+        33333333333333333333333333
       }
       item.presc_item_desc = descArray;
       schemesTempArray.push(item);
@@ -860,6 +906,57 @@ Page({
 
 
   },
+
+  // handlePrescInfo: function(schemesTemp) {
+  //   let that = this;
+  //   let schemesTempArray = [];
+  //   // let schemesTemp = res.data.data.schemes;
+  //   for (let i = 0; i < schemesTemp.length; i++) {
+  //     let item = JSON.parse(JSON.stringify(schemesTemp[i]));
+  //     let params = JSON.parse(item.params);
+  //     console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+  //     console.log(params);
+  //     let name = params.name;
+  //     let prescription = that.data.prescription[name];
+  //     if (name.indexOf("FlipBeat") >= 0) {
+  //       prescription = that.data.prescription["FlipBeat"];
+  //     }
+  //     console.log("#############################")
+  //     let prescAllKeys = Object.keys(params.presc);
+
+  //     let index = prescAllKeys.indexOf("repeat_training_times")
+  //     prescAllKeys.splice(index, 1);
+  //     item.presc_item_keys = prescAllKeys;
+
+  //     let descArray = [];
+  //     console.log(prescAllKeys);
+  //     for (let m = 0; m < prescAllKeys.length; m++) {
+  //       let key = prescAllKeys[m];
+  //       let valueObj = prescription[key];
+  //       console.log(valueObj);
+  //       let val = params.presc[key] + '';
+  //       console.log("val = " + val)
+
+  //       let valueItemObj = valueObj.value[val];
+  //       console.log(valueItemObj);
+  //       let name_cn = valueObj.name_cn;
+  //       descArray.push(name_cn + ": " + valueItemObj.text);
+  //       console.log("------------------------------------")
+  //       33333333333333333333333333
+  //     }
+  //     item.presc_item_desc = descArray;
+  //     schemesTempArray.push(item);
+  //   }
+
+  //   // that.data.schemes = schemesTempArray
+  //   that.setData({
+  //     schemes: schemesTempArray,
+  //   })
+
+  //   that.calculateTime();
+
+
+  // },
   calculateTime() {
 
 
@@ -979,7 +1076,16 @@ Page({
   onReady: function() {
 
   },
+  radioChange: function(e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    this.data.selected_item = this.data.mydata[e.detail.value - 1];
+    this.setData({
+      selected_item: this.data.mydata[e.detail.value - 1]
+    })
+    console.log(this.data.selected_item);
+    this.data.my_obstacle_id = this.data.selected_item.id;
 
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -1008,7 +1114,13 @@ Page({
         params: JSON.stringify(prescTemp.params)
       }
       let originScm = JSON.parse(JSON.stringify(this.data.originSchemes));
+
+     
       originScm.push(createPrescItem);
+      this.setData({
+
+        originSchemes: originScm,
+      })
       this.handlePrescData(originScm);
     } else if (this.data.currentModel == 'modify') {
       let prescTemp = currentApp.globalData.tempAddPresciption;
@@ -1086,6 +1198,70 @@ Page({
       })
     }
   },
+
+  control_radio() {
+    if (this.data.is_show_radio) {
+      this.data.is_show_radio = false;
+    } else {
+      this.data.is_show_radio = true;
+    }
+    this.setData({
+      is_show_radio: this.data.is_show_radio
+    })
+  },
+  getradiodataList() {
+    let _this = this;
+    console.log("getList");
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true
+    })
+    wx.request({
+      url: currentApp.url_config.HTTP_URL1 + '/store/v1/api/obstacle_type/list',
+      method: 'GET',
+      data: {
+        os: 'xiaochengxu',
+        app_version: '1.0.0'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': wx.getStorageSync("sessionid")
+      },
+      success(res) {
+        console.log(res.data);
+        if (res.data.respcd == '0000') {
+
+          _this.mydata = res.data.data.obstacles;
+
+          _this.setData({
+
+
+            mydata: res.data.data.obstacles
+          })
+        } else if (res.data.respcd == '2002') {
+          //session 过期跳转到登录页
+
+          wx.setStorageSync('sessionid', '');
+          wx.setStorageSync('userid', '');
+          wx.showToast({
+            title: '登录信息已失效,请重新登录',
+            icon: 'none'
+          })
+          wx.reLaunch({
+            url: '../login/index'
+          })
+
+        }
+      },
+      complete() {
+        console.log("complete");
+        wx.hideLoading();
+      }
+    });
+  },
+
+
+
   upAction: function(e) {
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     console.log(schemeIndex);
@@ -1159,6 +1335,15 @@ Page({
     })
   },
   prescSaveRequest: function() {
+
+    if (this.data.my_obstacle_id == 0) {
+      wx.showToast({
+        title: '请选择障碍类型',
+        icon: 'none'
+      })
+
+      return;
+    }
     let that = this;
     console.log(this.data.schemes);
     let selectedCurUserid = currentApp.globalData.selectedUserInfo.userid;
@@ -1184,6 +1369,8 @@ Page({
       url: currentApp.url_config.HTTP_URL1 + '/store/v2/api/presc_info',
       method: 'POST',
       data: {
+
+        obstacle_id: that.data.my_obstacle_id,
         prescriptions: JSON.stringify(paramsArray),
         op_userid: u_id,
         os: 'xiaochengxu',

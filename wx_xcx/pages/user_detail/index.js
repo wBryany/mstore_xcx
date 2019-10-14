@@ -24,7 +24,7 @@ Page({
 
     console.log(option.info);
 
-let _this=this;
+    let _this = this;
     this.setData({
       userInfo: JSON.parse(option.info)
     })
@@ -39,7 +39,7 @@ let _this=this;
     this.setData({
       mydata: _this.data.userInfo
     });
-    
+
 
   },
   goCheckReport() {
@@ -49,9 +49,85 @@ let _this=this;
     })
   },
   goAddPrescriprion: function() {
-    wx.navigateTo({
-      url: '/pages/add_prescription/index',
+    // wx.navigateTo({
+    //   url: '/pages/add_prescription/index',
+    // })
+
+    this.getPrescriprionInfo();
+
+
+  },
+  getPrescriprionInfo() {
+
+
+    let _this = this;
+    console.log("getPrescriprionInfo");
+
+    let u_id = wx.getStorageSync("userid");
+    // console.log("u_id:" + u_id);
+    // console.log("cookie:" + wx.getStorageSync("sessionid"));
+    wx.showLoading({
+      title: '请稍后...',
+      mask: true
     })
+    wx.request({
+      url: currentApp.url_config.HTTP_URL1 + '/store/v2/api/presc_info',
+      method: 'GET',
+      data: {
+        userid: _this.data.userInfo.userid,
+        os: 'xiaochengxu',
+        app_version: '1.0.0'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': wx.getStorageSync("sessionid")
+
+
+      },
+      success(res) {
+        console.log(res.data);
+        if (res.data.respcd == '0000') {
+
+          if (res.data.data.obstacle_id == 0 && res.data.data.presc_items.length == 0) {
+
+            //没有存障碍obstacle_id和没有处方的直接跳到  障碍类型选择，否则跳到 处方列表修改
+            wx.navigateTo({
+              url: '/pages/add_prescription/index',
+            })
+          }else{
+            wx.navigateTo({
+              url: '/pages/prescription_detail/index?type=2&obstacle_id=' + res.data.data.obstacle_id+'&presc_info=' + JSON.stringify(res.data.data),
+            })
+
+          }
+
+        } else if (res.data.respcd == '2002') {
+          //session 过期跳转到登录页
+
+          wx.setStorageSync('sessionid', '');
+          wx.setStorageSync('userid', '');
+          wx.showToast({
+            title: '登录信息已失效,请重新登录',
+            icon: 'none'
+          })
+          wx.reLaunch({
+            url: '../login/index'
+          })
+
+        } else {
+          wx.showToast({
+            title: res.data.resperr,
+            icon: 'none'
+          })
+
+        }
+      },
+      complete() {
+        console.log("complete");
+        wx.hideLoading();
+      }
+    });
+
   },
   goAlterRecord: function() {
 
@@ -74,8 +150,8 @@ let _this=this;
     })
   },
 
-  scanHandle: function () {
-    let _this=this;
+  scanHandle: function() {
+    let _this = this;
     wx.scanCode({
       success: (res) => {
         console.log(res);
@@ -92,7 +168,7 @@ let _this=this;
           header: {
             'content-type': 'application/json' // 默认值
           },
-          success: function (res) {
+          success: function(res) {
             // console.log(res.data);
             if (res.data.respcd == '0000') {
               wx.showToast({

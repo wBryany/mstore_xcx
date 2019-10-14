@@ -130,9 +130,10 @@ Page({
     // wx.navigateTo({
     //   url: '../user_detail/index?info=' + JSON.stringify(this.mydata[e.currentTarget.dataset.index])
     // })
-    if (this.data.selected_item){
+    console.log("selected_item.id:");
+    if (this.data.selected_item.id !== undefined && this.data.selected_item.id !== ''){
       wx.navigateTo({
-        url: '/pages/prescription_detail/index?presc_id=' + this.data.selected_item.id,
+        url: '/pages/prescription_detail/index?type=1&obstacle_id=' + this.data.selected_item.id,
       })
     }else{
       wx.showToast({

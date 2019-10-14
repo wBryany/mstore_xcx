@@ -3,8 +3,22 @@
   <view class="head_wrap">
     <radio class="sel_radio" disabled="flase" checked></radio>
     <view>请选择障碍类型</view>
-    <image src="{{src}}"></image>
+    <image src="{{src}}" bindtap="control_radio"></image>
   </view>
+
+  <view class="presc_wrap" wx-if="{{is_show_radio}}">
+
+  
+    <radio-group bindchange="radioChange">
+      <view class="row_wrap" wx:key="key" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}">
+        <view>{{item.name}}</view>
+        <radio class="sel_radio" value="{{item.id}}" checked="{{my_obstacle_id ==item.id }}"></radio>
+      </view>
+    </radio-group>
+
+  </view>
+
+
   <view class="stat_wrap">
     <view class="stat_frist">共{{schemes.length}}项训练项目，预估时间：{{total_train_time}}分钟</view>
     <view class="stat_second">
