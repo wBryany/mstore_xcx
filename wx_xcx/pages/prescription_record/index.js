@@ -495,7 +495,7 @@ Page({
       })
       that.drawLineChart(['1-1'], [0])
       wx.request({
-        url: 'https://api.uyu.com/v1/wp/user_record',
+        url: 'https://api.uyu.com/v2/wp/user_record',
         // url: 'http://app.uyu.com:11000/v2/wp/user_record',
         data: {
 
@@ -808,7 +808,7 @@ Page({
       title: '数据加载中',
     });
     wx.request({
-      url: 'https://api.uyu.com/v1/wp/user_record',
+      url: 'https://api.uyu.com/v2/wp/user_record',
       data: {
         userid: app.globalData.traincenter_userid,
         // userid:1059935,

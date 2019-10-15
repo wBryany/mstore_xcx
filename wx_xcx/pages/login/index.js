@@ -5,10 +5,10 @@ var MD5Util = require("../../assets/md5.js")
 
 Page({
   data: {
-    // mInputaccount: '',
-    // mInputpwd: '',
-    mInputaccount: '10001010001',
-    mInputpwd: '010001',
+    mInputaccount: '',
+    mInputpwd: '',
+    // mInputaccount: '10001010001',
+    // mInputpwd: '010001',
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
