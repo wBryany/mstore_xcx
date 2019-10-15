@@ -9,15 +9,25 @@ Page({
     searchtext: '',
     remainTrainTimes: 0,
     input_train_times: '',
+    reduce_train_times: '',
     name: '',
     mobile: '',
-    mydata: {}
+    mydata: {},
+    userinfo: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
+    this.data.userInfo = JSON.parse(options.userinfo);
+    this.data.name = this.data.userInfo.nick_name;
+    this.data.mobile = this.data.userInfo.phone_num;
+    this.setData({
+      name: this.data.name,
+      mobile: this.data.mobile,
+    });
 
   },
 
@@ -74,10 +84,11 @@ Page({
     this.data.searchtext = '';
     this.data.remainTrainTimes = 0;
     this.data.input_train_times = '';
-    this.data.name = '';
-    this.data.mobile = '';
+    this.data.reduce_train_times = '';
+    // this.data.name = '';
+    // this.data.mobile = '';
     this.data.mydata = {};
-    let _this=this;
+    let _this = this;
 
     this.setData({
       searchtext: _this.data.searchtext,
@@ -85,10 +96,27 @@ Page({
       name: _this.data.name,
       mobile: _this.data.mobile,
       input_train_times: _this.data.input_train_times,
+      reduce_train_times: _this.data.reduce_train_times,
     });
   },
   input_train_times(e) {
+    this.data.reduce_train_times = '';
     this.data.input_train_times = e.detail.value;
+    this.setData({
+
+      input_train_times: this.data.input_train_times,
+      reduce_train_times: this.data.reduce_train_times,
+    });
+  },
+  reduce_train_times(e) {
+
+    this.data.input_train_times = '';
+    this.data.reduce_train_times = e.detail.value;
+    this.setData({
+
+      input_train_times: this.data.input_train_times,
+      reduce_train_times: this.data.reduce_train_times,
+    });
   },
   inputsearch(e) {
 
@@ -108,7 +136,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: app.url_config.HTTP_URL1+'/store/v1/api/load_consumer',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/load_consumer',
       method: 'POST',
       data: {
         mobile: _this.data.searchtext,
@@ -164,7 +192,7 @@ Page({
   btn_confirm() {
 
     let _this = this;
-    if (_this.data.input_train_times == '' || _this.data.mobile == '' || _this.data.name == '') {
+    if ( _this.data.mobile == '' || _this.data.name == ''  ) {
       wx.showToast({
         title: '信息不正确',
         icon: 'none'
@@ -178,69 +206,153 @@ Page({
     wx.showLoading({
       title: '请稍后...',
     })
-    wx.request({
-      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_to_consumer',
-      method: 'POST',
-      data: {
-        busicd: 'STORE_ALLOT_TO_COMSUMER',
-        se_userid: u_id,
-        consumer_mobile: _this.data.mobile,
-        training_times: _this.data.input_train_times,
-        os: 'xiaochengxu',
-        app_version: '1.0.0'
-      },
-      header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'cookie': wx.getStorageSync("sessionid")
-      },
-      success(res) {
-        console.log(res.data);
+    if (_this.data.input_train_times != '') {
 
-        if (res.data.respcd == '0000') {
-          wx.showModal({
-            title: '提示',
-            showCancel: false,
-            confirmColor: '#4185de',
-            content: '操作成功',
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-                _this.cleardata();
-
-                _this.getdata();
-              } else if (res.cancel) {
-
-              }
-            }
-          })
-
-        } else if (res.data.respcd == '2002') {
-          //session 过期跳转到登录页
-
-          wx.setStorageSync('sessionid', '');
-          wx.setStorageSync('userid', '');
-          wx.showToast({
-            title: '登录信息已失效,请重新登录',
-            icon: 'none'
-          })
-          wx.reLaunch({
-            url: '../login/index'
-          })
-
-        } else {
-          wx.showToast({
-            title: res.data.resperr,
-            icon: 'none'
-          })
-        }
-      },
-
-      complete() {
-        console.log("complete");
-        wx.hideLoading();
+      if (_this.data.input_train_times == ''){
+        wx.showToast({
+          title: '信息不正确',
+          icon: 'none'
+        })
+        return;
       }
+      wx.request({
+        url: app.url_config.HTTP_URL1 + '/store/v1/api/store_to_consumer',
+        method: 'POST',
+        data: {
+          busicd: 'STORE_ALLOT_TO_COMSUMER',
+          se_userid: u_id,
+          consumer_mobile: _this.data.mobile,
+          training_times: _this.data.input_train_times,
+          os: 'xiaochengxu',
+          app_version: '1.0.0'
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': wx.getStorageSync("sessionid")
+        },
+        success(res) {
+          console.log(res.data);
 
-    });
+          if (res.data.respcd == '0000') {
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              confirmColor: '#4185de',
+              content: '操作成功',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  _this.cleardata();
+
+                  _this.getdata();
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+
+          } else if (res.data.respcd == '2002') {
+            //session 过期跳转到登录页
+
+            wx.setStorageSync('sessionid', '');
+            wx.setStorageSync('userid', '');
+            wx.showToast({
+              title: '登录信息已失效,请重新登录',
+              icon: 'none'
+            })
+            wx.reLaunch({
+              url: '../login/index'
+            })
+
+          } else {
+            wx.showToast({
+              title: res.data.resperr,
+              icon: 'none'
+            })
+          }
+        },
+
+        complete() {
+          console.log("complete");
+          wx.hideLoading();
+        }
+
+      });
+    } else {
+
+      if (_this.data.reduce_train_times=='' ||_this.data.reduce_train_times<0){
+        wx.showToast({
+          title: '信息不正确',
+          icon: 'none'
+        })
+        return;
+      }
+      wx.request({
+        url: app.url_config.HTTP_URL1 + '/store/v1/api/reduce_times',
+        method: 'POST',
+        data: {
+          busicd: 'CONSUMER_REDUCE_TO_STORE',
+          se_userid: u_id,
+          consumer_mobile: _this.data.mobile,
+          training_times: _this.data.reduce_train_times,
+          os: 'xiaochengxu',
+          app_version: '1.0.0'
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded',
+          'cookie': wx.getStorageSync("sessionid")
+        },
+        success(res) {
+          console.log(res.data);
+
+          if (res.data.respcd == '0000') {
+            wx.showModal({
+              title: '提示',
+              showCancel: false,
+              confirmColor: '#4185de',
+              content: '操作成功',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                  _this.cleardata();
+
+                  _this.getdata();
+                } else if (res.cancel) {
+
+                }
+              }
+            })
+
+          } else if (res.data.respcd == '2002') {
+            //session 过期跳转到登录页
+
+            wx.setStorageSync('sessionid', '');
+            wx.setStorageSync('userid', '');
+            wx.showToast({
+              title: '登录信息已失效,请重新登录',
+              icon: 'none'
+            })
+            wx.reLaunch({
+              url: '../login/index'
+            })
+
+          } else {
+            wx.showToast({
+              title: res.data.resperr,
+              icon: 'none'
+            })
+          }
+        },
+
+        complete() {
+          console.log("complete");
+          wx.hideLoading();
+        }
+
+      });
+    }
+
+
   },
   getdata() {
 
@@ -252,7 +364,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: app.url_config.HTTP_URL1 +'/store/v1/api/store_info',
+      url: app.url_config.HTTP_URL1 + '/store/v1/api/store_info',
       method: 'GET',
       data: {
         se_userid: u_id,
@@ -291,7 +403,7 @@ Page({
             url: '../login/index'
           })
 
-        }else {
+        } else {
           wx.showToast({
             title: res.data.resperr,
             icon: 'none'

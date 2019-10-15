@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+
+    select_radio_name:"",
     src: "/assets/img/edit.png",
     icon_del_src: "/assets/img/icon_del.png",
     icon_down_src: "/assets/img/icon_down.png",
@@ -743,11 +745,15 @@ Page({
    */
   onLoad: function(options) {
     let that = this;
-    this.getradiodataList();
+ 
     console.log(options);
 
     this.data.my_obstacle_id = options.obstacle_id;
+    this.getradiodataList();
+    this.setData({
+      my_obstacle_id: this.data.my_obstacle_id
 
+    })
     if (options.type == 1) {
       //新增
       wx.showLoading({
@@ -826,10 +832,14 @@ Page({
       let data = JSON.parse(options.presc_info);
 
       let temdata = [];
+      let nameList={};
+      for (let j = 0; j < data.items.length;j++){
+        nameList[data.items[j].id] = data.items[j].name;
+      }
       for (let i = 0; i < data.presc_items.length; i++) {
         let item = JSON.parse(JSON.stringify(data.presc_items[i]));
-        let myprescitem = JSON.parse(JSON.stringify(data.items[i]));
-        item.item_name = myprescitem.name;
+        // let myprescitem = JSON.parse(JSON.stringify(data.items[i]));
+        item.item_name = nameList[item.item_id];
         let params = JSON.parse(item.params);
         let presc = params.presc;
 
@@ -860,7 +870,7 @@ Page({
     // let schemesTemp = res.data.data.schemes;
     for (let i = 0; i < schemesTemp.length; i++) {
       let item = JSON.parse(JSON.stringify(schemesTemp[i]));
-      let params = JSON.parse(JSON.stringify(item.params));
+      let params = JSON.parse(item.params);
       console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
       console.log(params);
       let name = params.name;
@@ -882,16 +892,20 @@ Page({
       for (let m = 0; m < prescAllKeys.length; m++) {
         let key = prescAllKeys[m];
         let valueObj = prescription[key];
-        console.log(valueObj);
-        let val = params.presc[key] + '';
-        console.log("val = " + val)
 
-        let valueItemObj = valueObj.value[val];
-        console.log(valueItemObj);
-        let name_cn = valueObj.name_cn;
-        descArray.push(name_cn + ": " + valueItemObj.text);
-        console.log("------------------------------------")
-        33333333333333333333333333
+        if(valueObj !==undefined){
+          console.log(valueObj);
+          let val = params.presc[key];
+          console.log("val = " + val)
+
+          let valueItemObj = valueObj.value[val];
+          console.log(valueItemObj);
+          let name_cn = valueObj.name_cn;
+          descArray.push(name_cn + ": " + valueItemObj.text);
+          console.log("------------------------------------")
+          33333333333333333333333333
+        }
+       
       }
       item.presc_item_desc = descArray;
       schemesTempArray.push(item);
@@ -1079,11 +1093,20 @@ Page({
   radioChange: function(e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     this.data.selected_item = this.data.mydata[e.detail.value - 1];
+
+
     this.setData({
       selected_item: this.data.mydata[e.detail.value - 1]
     })
     console.log(this.data.selected_item);
+
+    this.data.select_radio_name = this.data.selected_item.name;
     this.data.my_obstacle_id = this.data.selected_item.id;
+    this.setData({
+      my_obstacle_id: this.data.my_obstacle_id,
+      select_radio_name: this.data.select_radio_name,
+
+    })
 
   },
   /**
@@ -1233,9 +1256,16 @@ Page({
 
           _this.mydata = res.data.data.obstacles;
 
+          for (let i = 0; i < res.data.data.obstacles.length;i++){
+            if (_this.data.my_obstacle_id == res.data.data.obstacles[i].id){
+              _this.data.select_radio_name = res.data.data.obstacles[i].name;
+              break;
+            }
+          }
+          
           _this.setData({
 
-
+            select_radio_name: _this.data.select_radio_name,
             mydata: res.data.data.obstacles
           })
         } else if (res.data.respcd == '2002') {

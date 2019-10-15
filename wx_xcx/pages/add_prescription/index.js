@@ -130,7 +130,7 @@ Page({
     // wx.navigateTo({
     //   url: '../user_detail/index?info=' + JSON.stringify(this.mydata[e.currentTarget.dataset.index])
     // })
-    console.log("selected_item.id:");
+    console.log("selected_item.id:" + this.data.selected_item.id);
     if (this.data.selected_item.id !== undefined && this.data.selected_item.id !== ''){
       wx.navigateTo({
         url: '/pages/prescription_detail/index?type=1&obstacle_id=' + this.data.selected_item.id,

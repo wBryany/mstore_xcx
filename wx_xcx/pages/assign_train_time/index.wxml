@@ -1,9 +1,9 @@
 <!--pages/assign_train_time/index.wxml-->
 <view class="head_wrap">
-  <view class="search_wrap">
+  <!-- <view class="search_wrap">
     <input placeholder="输入手机号"  bindinput="inputsearch" value="{{searchtext}}"bindconfirm="search"></input>
 
-  </view>
+  </view> -->
   <view class="remain_wrap">
   <text>剩余次数: {{remainTrainTimes}}次</text>
   </view>
@@ -21,6 +21,10 @@
   <view class="row_wrap">
     <view>增加训练次数</view> 
     <input placeholder="请输入次数" bindinput="input_train_times" value="{{input_train_times}}"></input> 
+  </view>
+    <view class="row_wrap">
+    <view>减少训练次数</view> 
+    <input placeholder="请输入次数" bindinput="reduce_train_times" value="{{reduce_train_times}}"></input> 
   </view>
 </view>
 <view class="btn_wrap">

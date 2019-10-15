@@ -2,7 +2,7 @@
 <view class="wrap">
   <view class="head_wrap">
     <radio class="sel_radio" disabled="flase" checked></radio>
-    <view>请选择障碍类型</view>
+    <view >{{select_radio_name == ""?'请选择障碍类型' :select_radio_name}}</view>
     <image src="{{src}}" bindtap="control_radio"></image>
   </view>
 
@@ -10,9 +10,9 @@
 
   
     <radio-group bindchange="radioChange">
-      <view class="row_wrap" wx:key="key" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}">
-        <view>{{item.name}}</view>
-        <radio class="sel_radio" value="{{item.id}}" checked="{{my_obstacle_id ==item.id }}"></radio>
+      <view class="myrow_wrap" wx:key="key" wx:for="{{mydata}}" wx:for-index="index" wx:for-item="item" data-index="{{index}}">
+        <view class="left_text">{{item.name}}</view>
+        <radio class="sel_radio" value="{{item.id}}" checked="{{ my_obstacle_id ==item.id }}"></radio>
       </view>
     </radio-group>
 

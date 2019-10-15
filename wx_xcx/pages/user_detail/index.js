@@ -146,7 +146,7 @@ Page({
   },
   goAssignTrainTimes: function() {
     wx.navigateTo({
-      url: '/pages/assign_train_time/index',
+      url: '/pages/assign_train_time/index?userinfo=' + JSON.stringify(this.data.userInfo),
     })
   },
 

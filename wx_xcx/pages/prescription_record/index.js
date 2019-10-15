@@ -3,6 +3,7 @@
 // var windowWidth = null;
 // var ratio = null;
 import * as echarts from '../../ec-canvas/echarts';
+
 function initChar(chart) {
   var option = {
     tooltip: {
@@ -91,7 +92,9 @@ var startPos = null;
 var scrollTop = 0;
 Page({
   data: {
-    myuserid:'',
+
+    mydata: {},
+    myuserid: '',
     ec: {
       lazyLoad: true
     },
@@ -379,7 +382,7 @@ Page({
         wx.request({
           url: newStr, //
           data: {
-            userid: app.globalData.traincenter_userid 
+            userid: app.globalData.traincenter_userid
           },
           header: {
             'content-type': 'application/json' // 默认值
@@ -405,7 +408,7 @@ Page({
                 url: '../login/index'
               })
 
-            }else {
+            } else {
               wx.showToast({
                 title: '创建失败',
                 image: '../../image/fail.png',
@@ -493,10 +496,11 @@ Page({
       that.drawLineChart(['1-1'], [0])
       wx.request({
         url: 'https://api.uyu.com/v1/wp/user_record',
+        // url: 'http://app.uyu.com:11000/v2/wp/user_record',
         data: {
 
-    
-          userid: app.globalData.traincenter_userid ,
+
+          userid: app.globalData.traincenter_userid,
           // userid:1059935,
           datatype: that.data.scoreType
         },
@@ -506,50 +510,55 @@ Page({
         success: function(res) {
           // console.log(res)
           wx.hideLoading();
-          let obj = res.data.data.last_score;
-          let maxLength = that.data.singleScoreMaxLength;
-          for (let i in obj) {
-            // console.log(obj[i].length)
-            maxLength = obj[i].length > maxLength ? obj[i].length : maxLength;
+          that.data.mydata = res.data.data;
+
+          if (res.data.data.all_single_scores.length > 0) {
+            let obj = res.data.data.all_single_scores[res.data.data.all_single_scores.length - 1];
+            let maxLength = that.data.singleScoreMaxLength;
+            for (let i in obj) {
+              // console.log(obj[i].length)
+              maxLength = obj[i].length > maxLength ? obj[i].length : maxLength;
+            }
+
+            that.setData({
+              singleScoreMaxLength: maxLength
+            });
+            that.setData({
+              'singleScoreObj.fanzhuan.classify.fanzhuan_r.data': obj.fanzhuan_r,
+              'singleScoreObj.fanzhuan.classify.fanzhuan_l.data': obj.fanzhuan_l,
+              'singleScoreObj.fanzhuan.classify.fanzhuan_b.data': obj.fanzhuan_b,
+              'singleScoreObj.l_rgkebian.classify.l_rgkebian_bi.data': obj.l_rgkebian_bi,
+              'singleScoreObj.l_rgkebian.classify.l_rgkebian_bo.data': obj.l_rgkebian_bo,
+              'singleScoreObj.h_rgkebian.classify.h_rgkebian_bi.data': obj.h_rgkebian_bi,
+              'singleScoreObj.h_rgkebian.classify.h_rgkebian_bo.data': obj.h_rgkebian_bo,
+              'singleScoreObj.h_rgkebian.classify.h_rgkebian_io.data': obj.h_rgkebian_io,
+              'singleScoreObj.fushi.classify.fushi.data': obj.fushi,
+              'singleScoreObj.l_liti.classify.l_liti_bi.data': obj.l_liti_bi,
+              'singleScoreObj.l_liti.classify.l_liti_bo.data': obj.l_liti_bo,
+
+              'singleScoreObj.m_liti.classify.m_liti_bo.data': obj.m_liti_bo,
+              'singleScoreObj.m_liti.classify.m_liti_bi.data': obj.m_liti_bi,
+
+              'singleScoreObj.h_liti.classify.h_liti_bo.data': obj.h_liti_bo,
+              'singleScoreObj.h_liti.classify.h_liti_bi.data': obj.h_liti_bi,
+              'singleScoreObj.h_liti.classify.h_liti_io.data': obj.h_liti_io,
+              'singleScoreObj.l_rgguding.classify.l_rgguding_bi.data': obj.l_rgguding_bi,
+              'singleScoreObj.l_rgguding.classify.l_rgguding_bo.data': obj.l_rgguding_bo,
+              'singleScoreObj.h_rgguding.classify.h_rgguding_bi.data': obj.h_rgguding_bi,
+              'singleScoreObj.h_rgguding.classify.h_rgguding_bo.data': obj.h_rgguding_bo,
+              'singleScoreObj.h_rgguding.classify.h_rgguding_io.data': obj.h_rgguding_io,
+              'singleScoreObj.liexi.classify.liexi_bi.data': obj.liexi_bi,
+              'singleScoreObj.liexi.classify.liexi_bo.data': obj.liexi_bo,
+              'singleScoreObj.l_rgread.classify.l_rgread.data': obj.l_rgread,
+              'singleScoreObj.m_rgread.classify.m_rgread.data': obj.m_rgread,
+              'singleScoreObj.saoshi.classify.saoshi.data': obj.saoshi,
+              'singleScoreObj.tuijin.classify.tuijin.data': obj.tuijin,
+              'singleScoreObj.zhuisui.classify.zhuisui_qu.data': obj.zhuisui_qu,
+              'singleScoreObj.zhuisui.classify.zhuisui_xu.data': obj.zhuisui_xu,
+              'singleScoreObj.zhuisui.classify.zhuisui_zhe.data': obj.zhuisui_zhe,
+            })
           }
 
-          that.setData({
-            singleScoreMaxLength: maxLength
-          });
-          that.setData({
-            'singleScoreObj.fanzhuan.classify.fanzhuan_r.data': obj.fanzhuan_r,
-            'singleScoreObj.fanzhuan.classify.fanzhuan_l.data': obj.fanzhuan_l,
-            'singleScoreObj.fanzhuan.classify.fanzhuan_b.data': obj.fanzhuan_b,
-            'singleScoreObj.l_rgkebian.classify.l_rgkebian_bi.data': obj.l_rgkebian_bi,
-            'singleScoreObj.l_rgkebian.classify.l_rgkebian_bo.data': obj.l_rgkebian_bo,
-            'singleScoreObj.h_rgkebian.classify.h_rgkebian_bi.data': obj.h_rgkebian_bi,
-            'singleScoreObj.h_rgkebian.classify.h_rgkebian_bo.data': obj.h_rgkebian_bo,
-            'singleScoreObj.h_rgkebian.classify.h_rgkebian_io.data': obj.h_rgkebian_io,
-            'singleScoreObj.fushi.classify.fushi.data': obj.fushi,
-            'singleScoreObj.l_liti.classify.l_liti_bi.data': obj.l_liti_bi,
-            'singleScoreObj.l_liti.classify.l_liti_bo.data': obj.l_liti_bo,
-
-            'singleScoreObj.m_liti.classify.m_liti_bo.data': obj.m_liti_bo,
-            'singleScoreObj.m_liti.classify.m_liti_bi.data': obj.m_liti_bi,
-
-            'singleScoreObj.h_liti.classify.h_liti_bo.data': obj.h_liti_bo,
-            'singleScoreObj.h_liti.classify.h_liti_bi.data': obj.h_liti_bi,
-            'singleScoreObj.h_liti.classify.h_liti_io.data': obj.h_liti_io,
-            'singleScoreObj.l_rgguding.classify.l_rgguding_bi.data': obj.l_rgguding_bi,
-            'singleScoreObj.l_rgguding.classify.l_rgguding_bo.data': obj.l_rgguding_bo,
-            'singleScoreObj.h_rgguding.classify.h_rgguding_bi.data': obj.h_rgguding_bi,
-            'singleScoreObj.h_rgguding.classify.h_rgguding_bo.data': obj.h_rgguding_bo,
-            'singleScoreObj.h_rgguding.classify.h_rgguding_io.data': obj.h_rgguding_io,
-            'singleScoreObj.liexi.classify.liexi_bi.data': obj.liexi_bi,
-            'singleScoreObj.liexi.classify.liexi_bo.data': obj.liexi_bo,
-            'singleScoreObj.l_rgread.classify.l_rgread.data': obj.l_rgread,
-            'singleScoreObj.m_rgread.classify.m_rgread.data': obj.m_rgread,
-            'singleScoreObj.saoshi.classify.saoshi.data': obj.saoshi,
-            'singleScoreObj.tuijin.classify.tuijin.data': obj.tuijin,
-            'singleScoreObj.zhuisui.classify.zhuisui_qu.data': obj.zhuisui_qu,
-            'singleScoreObj.zhuisui.classify.zhuisui_xu.data': obj.zhuisui_xu,
-            'singleScoreObj.zhuisui.classify.zhuisui_zhe.data': obj.zhuisui_zhe,
-          })
           let dateArr = res.data.data.all_score.ctime;
           let dataArr = res.data.data.all_score.score;
           that.drawLineChart(dateArr, dataArr)
@@ -583,7 +592,7 @@ Page({
       })
     }).exec()
   },
-  toreportPage(){
+  toreportPage() {
     wx.navigateTo({
       url: '../report_webview/index?userid=' + this.data.myuserid
     })
@@ -631,12 +640,68 @@ Page({
     lineChart.scroll(e);
   },
   touchEndHandler: function(e) {
+    let _this = this;
     lineChart.scrollEnd(e);
     lineChart.showToolTip(e, {
       format: function(item, category) {
+        _this.setsingleScoreData(category);
+
         return category + ' ' + item.name + ':' + item.data
       }
     });
+
+
+  },
+  setsingleScoreData(time) {
+    let timearray = this.data.mydata.all_score.ctime;
+    let index = -1;
+    for (let i = 0; i < timearray.length; i++) {
+      if (timearray[i] == time) {
+        index = i;
+        break;
+      }
+    }
+    if (this.data.mydata.all_single_scores.length>0){
+      let obj=this.data.mydata.all_single_scores[index];
+      this.setData({
+        'singleScoreObj.fanzhuan.classify.fanzhuan_r.data': obj.fanzhuan_r,
+        'singleScoreObj.fanzhuan.classify.fanzhuan_l.data': obj.fanzhuan_l,
+        'singleScoreObj.fanzhuan.classify.fanzhuan_b.data': obj.fanzhuan_b,
+        'singleScoreObj.l_rgkebian.classify.l_rgkebian_bi.data': obj.l_rgkebian_bi,
+        'singleScoreObj.l_rgkebian.classify.l_rgkebian_bo.data': obj.l_rgkebian_bo,
+        'singleScoreObj.h_rgkebian.classify.h_rgkebian_bi.data': obj.h_rgkebian_bi,
+        'singleScoreObj.h_rgkebian.classify.h_rgkebian_bo.data': obj.h_rgkebian_bo,
+        'singleScoreObj.h_rgkebian.classify.h_rgkebian_io.data': obj.h_rgkebian_io,
+        'singleScoreObj.fushi.classify.fushi.data': obj.fushi,
+        'singleScoreObj.l_liti.classify.l_liti_bi.data': obj.l_liti_bi,
+        'singleScoreObj.l_liti.classify.l_liti_bo.data': obj.l_liti_bo,
+
+        'singleScoreObj.m_liti.classify.m_liti_bo.data': obj.m_liti_bo,
+        'singleScoreObj.m_liti.classify.m_liti_bi.data': obj.m_liti_bi,
+
+        'singleScoreObj.h_liti.classify.h_liti_bo.data': obj.h_liti_bo,
+        'singleScoreObj.h_liti.classify.h_liti_bi.data': obj.h_liti_bi,
+        'singleScoreObj.h_liti.classify.h_liti_io.data': obj.h_liti_io,
+        'singleScoreObj.l_rgguding.classify.l_rgguding_bi.data': obj.l_rgguding_bi,
+        'singleScoreObj.l_rgguding.classify.l_rgguding_bo.data': obj.l_rgguding_bo,
+        'singleScoreObj.h_rgguding.classify.h_rgguding_bi.data': obj.h_rgguding_bi,
+        'singleScoreObj.h_rgguding.classify.h_rgguding_bo.data': obj.h_rgguding_bo,
+        'singleScoreObj.h_rgguding.classify.h_rgguding_io.data': obj.h_rgguding_io,
+        'singleScoreObj.liexi.classify.liexi_bi.data': obj.liexi_bi,
+        'singleScoreObj.liexi.classify.liexi_bo.data': obj.liexi_bo,
+        'singleScoreObj.l_rgread.classify.l_rgread.data': obj.l_rgread,
+        'singleScoreObj.m_rgread.classify.m_rgread.data': obj.m_rgread,
+        'singleScoreObj.saoshi.classify.saoshi.data': obj.saoshi,
+        'singleScoreObj.tuijin.classify.tuijin.data': obj.tuijin,
+        'singleScoreObj.zhuisui.classify.zhuisui_qu.data': obj.zhuisui_qu,
+        'singleScoreObj.zhuisui.classify.zhuisui_xu.data': obj.zhuisui_xu,
+        'singleScoreObj.zhuisui.classify.zhuisui_zhe.data': obj.zhuisui_zhe,
+      })
+
+
+
+    }
+  
   },
   /*
    * 绘制训练进度环
@@ -701,7 +766,7 @@ Page({
     var that = this;
     console.log(e);
     this.data.myuserid = e.userid;
-    app.globalData.traincenter_userid = this.data.myuserid ;
+    app.globalData.traincenter_userid = this.data.myuserid;
 
 
 
@@ -745,7 +810,7 @@ Page({
     wx.request({
       url: 'https://api.uyu.com/v1/wp/user_record',
       data: {
-        userid: app.globalData.traincenter_userid ,
+        userid: app.globalData.traincenter_userid,
         // userid:1059935,
         datatype: scoreType
       },
@@ -754,12 +819,66 @@ Page({
       },
       success: function(res) {
         console.log(res.data);
+
+
+  
+        that.data.mydata = res.data.data;
+
+        if (res.data.data.all_single_scores.length > 0) {
+          let obj = res.data.data.all_single_scores[res.data.data.all_single_scores.length - 1];
+          let maxLength = that.data.singleScoreMaxLength;
+          for (let i in obj) {
+            // console.log(obj[i].length)
+            maxLength = obj[i].length > maxLength ? obj[i].length : maxLength;
+          }
+
+          that.setData({
+            singleScoreMaxLength: maxLength
+          });
+          that.setData({
+            'singleScoreObj.fanzhuan.classify.fanzhuan_r.data': obj.fanzhuan_r,
+            'singleScoreObj.fanzhuan.classify.fanzhuan_l.data': obj.fanzhuan_l,
+            'singleScoreObj.fanzhuan.classify.fanzhuan_b.data': obj.fanzhuan_b,
+            'singleScoreObj.l_rgkebian.classify.l_rgkebian_bi.data': obj.l_rgkebian_bi,
+            'singleScoreObj.l_rgkebian.classify.l_rgkebian_bo.data': obj.l_rgkebian_bo,
+            'singleScoreObj.h_rgkebian.classify.h_rgkebian_bi.data': obj.h_rgkebian_bi,
+            'singleScoreObj.h_rgkebian.classify.h_rgkebian_bo.data': obj.h_rgkebian_bo,
+            'singleScoreObj.h_rgkebian.classify.h_rgkebian_io.data': obj.h_rgkebian_io,
+            'singleScoreObj.fushi.classify.fushi.data': obj.fushi,
+            'singleScoreObj.l_liti.classify.l_liti_bi.data': obj.l_liti_bi,
+            'singleScoreObj.l_liti.classify.l_liti_bo.data': obj.l_liti_bo,
+
+            'singleScoreObj.m_liti.classify.m_liti_bo.data': obj.m_liti_bo,
+            'singleScoreObj.m_liti.classify.m_liti_bi.data': obj.m_liti_bi,
+
+            'singleScoreObj.h_liti.classify.h_liti_bo.data': obj.h_liti_bo,
+            'singleScoreObj.h_liti.classify.h_liti_bi.data': obj.h_liti_bi,
+            'singleScoreObj.h_liti.classify.h_liti_io.data': obj.h_liti_io,
+            'singleScoreObj.l_rgguding.classify.l_rgguding_bi.data': obj.l_rgguding_bi,
+            'singleScoreObj.l_rgguding.classify.l_rgguding_bo.data': obj.l_rgguding_bo,
+            'singleScoreObj.h_rgguding.classify.h_rgguding_bi.data': obj.h_rgguding_bi,
+            'singleScoreObj.h_rgguding.classify.h_rgguding_bo.data': obj.h_rgguding_bo,
+            'singleScoreObj.h_rgguding.classify.h_rgguding_io.data': obj.h_rgguding_io,
+            'singleScoreObj.liexi.classify.liexi_bi.data': obj.liexi_bi,
+            'singleScoreObj.liexi.classify.liexi_bo.data': obj.liexi_bo,
+            'singleScoreObj.l_rgread.classify.l_rgread.data': obj.l_rgread,
+            'singleScoreObj.m_rgread.classify.m_rgread.data': obj.m_rgread,
+            'singleScoreObj.saoshi.classify.saoshi.data': obj.saoshi,
+            'singleScoreObj.tuijin.classify.tuijin.data': obj.tuijin,
+            'singleScoreObj.zhuisui.classify.zhuisui_qu.data': obj.zhuisui_qu,
+            'singleScoreObj.zhuisui.classify.zhuisui_xu.data': obj.zhuisui_xu,
+            'singleScoreObj.zhuisui.classify.zhuisui_zhe.data': obj.zhuisui_zhe,
+          })
+        }
+
+
+
         let dateArr = res.data.data.all_score.ctime;
         let dataArr = res.data.data.all_score.score;
         that.drawLineChart(dateArr, dataArr)
       },
 
-      complete:function(){
+      complete: function() {
         wx.hideLoading();
       }
     });
@@ -773,11 +892,11 @@ Page({
       canvasId: 'lineCanvas',
       type: 'area',
       categories: dateArr,
-      
+
       animation: true,
       series: [{
 
-        type:'line',
+        type: 'line',
         name: '得分',
         data: dataArr,
         color: '#4a90e2',
@@ -806,7 +925,7 @@ Page({
       legend: false, // 是否显示图表下方各类别的标识
       extra: {
         lineStyle: 'straight',
-     
+
       }
     });
   },

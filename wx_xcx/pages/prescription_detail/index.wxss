@@ -232,11 +232,33 @@ radio .wx-radio-input.wx-radio-input-checked::before{
   background-color: #4A90E2;
 }
 
-/* .presc_wrap{
-  margin: 0 auto;
-  width: 100%;
-  font-size: 32rpx;
-    margin-bottom: 200rpx;
-} */
+.left_text{
 
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+}
+.smy_radio{
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
 
+}
+
+.radio_container{
+  height: 100rpx;
+width: 100%;
+}
+
+.myrow_wrap{
+  margin: 0 36rpx;
+  border-bottom: 2rpx solid #F5f5f5;
+  display: flex;
+}
+.myrow_wrap view{
+  flex: 1;
+  height: 100rpx;
+  line-height: 100rpx;
+}
