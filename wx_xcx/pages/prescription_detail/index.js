@@ -864,6 +864,44 @@ Page({
 
 
   },
+
+  refreshData(){
+
+    let that=this;
+    //新增
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true
+    })
+    wx.request({
+      url: currentApp.url_config.HTTP_URL2 + '/store/v1/api/obstacle_scheme/list',
+      method: 'GET',
+      data: {
+        os: 'xiaochengxu',
+        obstacle_id: this.data.my_obstacle_id ,
+        app_version: '1.0.0'
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'cookie': wx.getStorageSync("sessionid")
+      },
+      success(res) {
+        console.log(res.data);
+        if (res.data.respcd == '0000') {
+          let schemesTempArray = [];
+          let schemesTemp = res.data.data.schemes;
+          that.setData({
+            originSchemes: schemesTemp
+          })
+          that.handlePrescData(schemesTemp);
+        }
+      },
+      complete() {
+        console.log("complete");
+        wx.hideLoading();
+      }
+    });
+  },
   handlePrescData: function(schemesTemp) {
     let that = this;
     let schemesTempArray = [];
@@ -1107,7 +1145,7 @@ Page({
       select_radio_name: this.data.select_radio_name,
 
     })
-
+    this.refreshData();
   },
   /**
    * 生命周期函数--监听页面显示
@@ -1116,6 +1154,11 @@ Page({
     console.log("$$$$$$$$$$$$$$$$$$$$$")
     if (this.data.currentModel == 'add') {
       let prescTemp = currentApp.globalData.tempAddPresciption;
+
+      if(prescTemp==undefined){
+
+        return;
+      }
       let name = prescTemp.params.name;
       let info = this.data.prescription[name];
       if (name.indexOf("FlipBeat") >= 0) {
@@ -1147,6 +1190,11 @@ Page({
       this.handlePrescData(originScm);
     } else if (this.data.currentModel == 'modify') {
       let prescTemp = currentApp.globalData.tempAddPresciption;
+
+      if (prescTemp == undefined) {
+
+        return;
+      }
       let originScm = JSON.parse(JSON.stringify(this.data.originSchemes));
       let mIndex = this.data.modifyIndex;
       originScm[mIndex].count = prescTemp.params.presc.repeat_training_times;
@@ -1313,9 +1361,12 @@ Page({
   deleteAction: function(e) {
     let schemeIndex = e.currentTarget.dataset.schemeindex;
     let schemes = JSON.parse(JSON.stringify(this.data.schemes));
+    let originSchemes = JSON.parse(JSON.stringify(this.data.originSchemes));
     schemes.splice(schemeIndex, 1); //删除当前index对应的Item
+    originSchemes.splice(schemeIndex, 1); //删除当前index对应的Item
     this.setData({
-      schemes: schemes
+      schemes: schemes,
+      originSchemes: originSchemes
     })
   },
   rowHeadAction: function(e) {
@@ -1366,14 +1417,14 @@ Page({
   },
   prescSaveRequest: function() {
 
-    if (this.data.my_obstacle_id == 0) {
-      wx.showToast({
-        title: '请选择障碍类型',
-        icon: 'none'
-      })
+    // if (this.data.my_obstacle_id == 0) {
+    //   wx.showToast({
+    //     title: '请选择障碍类型',
+    //     icon: 'none'
+    //   })
 
-      return;
-    }
+    //   return;
+    // }
     let that = this;
     console.log(this.data.schemes);
     let selectedCurUserid = currentApp.globalData.selectedUserInfo.userid;
@@ -1391,7 +1442,7 @@ Page({
     }
     // }
     console.log(paramsArray);
-    let u_id = wx.getStorageSync("userid");
+    let op_uid = wx.getStorageSync("op_userid");
     wx.showLoading({
       title: '请稍后...',
     })
@@ -1402,7 +1453,7 @@ Page({
 
         obstacle_id: that.data.my_obstacle_id,
         prescriptions: JSON.stringify(paramsArray),
-        op_userid: u_id,
+        op_userid: op_uid,
         os: 'xiaochengxu',
         app_version: '1.0.0'
       },
@@ -1410,7 +1461,11 @@ Page({
         'content-type': 'application/x-www-form-urlencoded',
         'cookie': wx.getStorageSync("sessionid")
       },
+      fail(e){
+        wx.hideLoading();
+      },
       success(res) {
+        wx.hideLoading();
         console.log(res.data);
 
         if (res.data.respcd == '0000') {
@@ -1443,7 +1498,7 @@ Page({
 
         } else {
           wx.showToast({
-            title: res.data.resperr,
+            title: res.data.resperr+'',
             icon: 'none'
           })
         }
@@ -1451,7 +1506,7 @@ Page({
 
       complete() {
         console.log("complete");
-        wx.hideLoading();
+    
       }
 
     });

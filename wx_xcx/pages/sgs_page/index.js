@@ -207,9 +207,12 @@ Page({
         'cookie': wx.getStorageSync("sessionid")
 
       },
+      fail(e){
+        wx.hideLoading();
+      },
       success(res) {
         console.log(res.data);
-
+       
         if (res.data.respcd == '0000') {
 
       
@@ -235,6 +238,8 @@ Page({
           })
 
         }else{
+          console.log(res.data.respcd);
+
           wx.showToast({
             title: res.data.resperr,
             icon: 'none'
@@ -244,7 +249,7 @@ Page({
 
       complete() {
         console.log("complete");
-        wx.hideLoading();
+      
       }
     });
   }

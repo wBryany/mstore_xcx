@@ -125,14 +125,18 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
 
       },
+      fail(e){
+        wx.hideLoading();
+      },
       success(res) {
         console.log(res.data);
-
+        wx.hideLoading();
         if (res.data.respcd == '0000') {
 
           console.log("header:" + res.header["Set-Cookie"]);
           wx.setStorageSync('sessionid', res.header["Set-Cookie"]);
           wx.setStorageSync('userid', res.data.data.userid);
+          wx.setStorageSync('op_userid', res.data.data.login_id);
           app.globalData.userId = res.data.data.userid;
           // app.globalData.openId = res.data.data.openid;
           //登录成功
@@ -159,7 +163,7 @@ Page({
 
         }else{
           wx.showToast({
-            title: res.data.resperr,
+            title: res.data.resperr+'',
             icon: 'none'
           })
         }
@@ -167,7 +171,7 @@ Page({
 
       complete() {
         console.log("complete");
-        wx.hideLoading();
+     
       }
     });
   }
